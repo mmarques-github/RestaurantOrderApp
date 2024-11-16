@@ -80,6 +80,7 @@ Bellow is a list of features ***to be implemented***:
 - [x] Make it possible for the Waiter to see a version of the Kitchen Screen
 - [x] Add Color to Orders depending on delay and state
 - [ ] Make it possible in Order Dialog to add 0.5 portions i.e. ( DishName + 1 portion(s) -  + 0.5 portion(s) -)
+- [ ] In Order Dialog when something goes from preparing to ready, delay time no longer shows   
 - [x] Waiter Screen should display tables with a  preview of  the items on the table
 - [ ] In Kitchen Screen, the user should be able to toggle the **availability** of an item
 - [ ] In the Order Dialog only available items can be added

@@ -21,6 +21,8 @@ class TableDialog extends StatefulWidget {
   _TableDialogState createState() => _TableDialogState();
 }
 
+final states = ['pending', 'preparing', 'ready', 'delivered', 'payed'];
+
 class _TableDialogState extends State<TableDialog> {
   String? username;
 
@@ -45,13 +47,73 @@ class _TableDialogState extends State<TableDialog> {
         .update({'orderStatus': newStatus});
   }
 
+  // Function to move order state forward
+  Future<void> _moveOrderForward(String orderId, String currentStatus) async {
+    final currentIndex = states.indexOf(currentStatus);
+    if (currentIndex < states.length - 1) {
+      await _updateOrderStatus(orderId, states[currentIndex + 1]);
+    }
+  }
+
+  // Function to move order state backward
+  Future<void> _moveOrderBackward(String orderId, String currentStatus) async {
+    final currentIndex = states.indexOf(currentStatus);
+    if (currentIndex > 0) { // Only allow moving back after 'preparing'
+      await _updateOrderStatus(orderId, states[currentIndex - 1]);
+    }
+  }
+
+  // Function to show delete confirmation
+  Future<void> _showDeleteConfirmation(BuildContext context, String orderId) async {
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Confirm Deletion'),
+          content: const Text('Are you sure you want to delete this order?'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(false),
+              child: const Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(true),
+              child: const Text('Delete'),
+            ),
+          ],
+        );
+      },
+    );
+
+    if (confirmed == true) {
+      await FirebaseFirestore.instance
+          .collection('orders')
+          .doc(orderId)
+          .delete();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final deviceWidth = MediaQuery.of(context).size.width;
+    final deviceHeight = MediaQuery.of(context).size.height;
+    final isSmallScreen = deviceWidth < 400;
+
+    // Define font size constants relative to device size
+    final double dialogTitleFontSize = deviceWidth * 0.05;
+    final double buttonFontSize = deviceWidth * 0.04;
+    final double paddingVertical = deviceHeight * 0.005; // Reduced padding
+    final double paddingHorizontal = deviceWidth * 0.02;
+    final double iconButtonSize = isSmallScreen ? 18 : 24; // Smaller size for small screens
+
     return AlertDialog(
-      title: Text('Table ${widget.tableId}'),
+      title: Text(
+        'Table ${widget.tableId}',
+        style: TextStyle(fontSize: dialogTitleFontSize),
+      ),
       content: SizedBox(
         width: double.maxFinite,
-        height: MediaQuery.of(context).size.height * 0.6,
+        height: deviceHeight * 0.5, // Reduced height for better fit
         child: StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance
               .collection('orders')
@@ -68,18 +130,22 @@ class _TableDialogState extends State<TableDialog> {
               return const Center(child: Text('No orders for this table'));
             }
 
-            // Sort orders by status and time
+            // Sort orders by delay and status
             orders.sort((a, b) {
-              var statusA = (a.data() as Map<String, dynamic>)['orderStatus'] as String;
-              var statusB = (b.data() as Map<String, dynamic>)['orderStatus'] as String;
               var timeA = ((a.data() as Map<String, dynamic>)['orderTime'] as Timestamp?) ?? Timestamp.now();
               var timeB = ((b.data() as Map<String, dynamic>)['orderTime'] as Timestamp?) ?? Timestamp.now();
-
-              if (statusA != statusB) {
-                final statusOrder = ['pending', 'preparing', 'ready', 'delivered'];
-                return statusOrder.indexOf(statusA) - statusOrder.indexOf(statusB);
+              
+              var delayA = DateTime.now().difference(timeA.toDate());
+              var delayB = DateTime.now().difference(timeB.toDate());
+              
+              var delayComparison = delayB.compareTo(delayA);
+              if (delayComparison != 0) {
+                return delayComparison;
               }
-              return timeB.compareTo(timeA);
+              
+              var statusA = (a.data() as Map<String, dynamic>)['orderStatus'] as String;
+              var statusB = (b.data() as Map<String, dynamic>)['orderStatus'] as String;
+              return states.indexOf(statusA) - states.indexOf(statusB);
             });
 
             return ListView.builder(
@@ -91,6 +157,7 @@ class _TableDialogState extends State<TableDialog> {
                 var orderStatus = orderData['orderStatus'];
                 var orderTime = ((orderData['orderTime'] as Timestamp?) ?? Timestamp.now()).toDate();
                 var orderColor = _getStatusColor(orderStatus, orderTime);
+
                 return FutureBuilder<QuerySnapshot>(
                   future: FirebaseFirestore.instance
                       .collection('items')
@@ -101,8 +168,28 @@ class _TableDialogState extends State<TableDialog> {
                     if (!itemSnapshot.hasData || itemSnapshot.data!.docs.isEmpty) {
                       return Card(
                         color: Colors.grey.shade200,
-                        child: ListTile(
-                          title: Text('${orderData['orderPortion'].toString()} x Unknown Item'),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                            vertical: paddingVertical,
+                            horizontal: paddingHorizontal,
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      '${orderData['orderPortion']} x Unknown Item',
+                                      style: Theme.of(context).textTheme.titleMedium,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       );
                     }
@@ -113,26 +200,83 @@ class _TableDialogState extends State<TableDialog> {
 
                     return Card(
                       color: orderColor,
-                      child: ListTile(
-                        title: Text('${orderData['orderPortion'].toString()} x $itemName - ${calculateDelay(orderTime)}'),
-                        subtitle: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                          vertical: paddingVertical,
+                          horizontal: paddingHorizontal,
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('Status: ${orderStatus.toUpperCase()}'),
-                            FutureBuilder<QuerySnapshot>(
-                              future: FirebaseFirestore.instance
-                                  .collection('users')
-                                  .where('id', isEqualTo: orderData['userId'])
-                                  .limit(1)
-                                  .get(),
-                              builder: (context, userSnapshot) {
-                                if (!userSnapshot.hasData || userSnapshot.data!.docs.isEmpty) {
-                                  return const Text('Unknown User');
-                                }
-                                var userData = userSnapshot.data!.docs.first.data() as Map<String, dynamic>;
-                                var userName = userData['name'] ?? 'Unknown User';
-                                return Text('$userName');
-                              },
+                            // Column for Text Elements
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                // Portions x ItemName
+                                Text(
+                                  '${orderData['orderPortion']} x $itemName',
+                                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: isSmallScreen ? 12.0 : 16.0,
+                                      ),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                SizedBox(height: paddingVertical * 0.5),
+
+                                // OrderStatus (username)
+                                Text(
+                                  '${orderStatus.toUpperCase()} (${username ?? 'Unknown User'})',
+                                  style: Theme.of(context).textTheme.bodyMedium,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                SizedBox(height: paddingVertical * 0.5),
+
+                                // Delay - OrderDetails
+                                Text(
+                                  '${calculateDelay(orderTime)} - ${orderData['orderDetails'] ?? ''}',
+                                  style: Theme.of(context).textTheme.bodyMedium,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ],
+                            ),
+
+                            SizedBox(height: paddingVertical * 0.5), // Spacing between text and buttons
+
+                            // Row for Button Elements
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                // Move Back Button
+                                IconButton(
+                                  icon: const Icon(Icons.arrow_back),
+                                  onPressed: orderStatus != states.first
+                                      ? () => _moveOrderBackward(order.id, orderStatus)
+                                      : null,
+                                  iconSize: iconButtonSize,
+                                  tooltip: 'Move Back',
+                                ),
+
+                                // Move Forward Button
+                                IconButton(
+                                  icon: const Icon(Icons.arrow_forward),
+                                  onPressed: orderStatus != states.last
+                                      ? () => _moveOrderForward(order.id, orderStatus)
+                                      : null,
+                                  iconSize: iconButtonSize,
+                                  tooltip: 'Move Forward',
+                                ),
+
+                                // Delete Button
+                                IconButton(
+                                  icon: const Icon(Icons.delete),
+                                  onPressed: () => _showDeleteConfirmation(context, order.id),
+                                  iconSize: iconButtonSize,
+                                  tooltip: 'Delete Order',
+                                ),
+                              ],
                             ),
                           ],
                         ),
@@ -148,11 +292,17 @@ class _TableDialogState extends State<TableDialog> {
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: const Text('Close'),
+          child: Text(
+            'Close',
+            style: TextStyle(fontSize: buttonFontSize),
+          ),
         ),
         ElevatedButton(
           onPressed: _openOrderDialog,
-          child: const Text('Add Order'),
+          child: Text(
+            'Add Order',
+            style: TextStyle(fontSize: buttonFontSize),
+          ),
         ),
       ],
     );
@@ -169,16 +319,15 @@ class _TableDialogState extends State<TableDialog> {
         );
       },
     ).then((_) {
-      // Refresh the table dialog when returning from the order dialog
       setState(() {});
     });
   }
 
   String calculateDelay(DateTime dateTime) {
     var diff = DateTime.now().difference(dateTime);
-    if (diff.inMinutes < 60) return '${diff.inMinutes}m ago';
-    else if (diff.inHours < 24) return '${diff.inHours}h ${diff.inMinutes.remainder(60)}m ago'; // print hh:mm if less than 24 hours  
-    else return '${diff.inDays}d ${diff.inHours.remainder(24)}h ago'; // print dd:hh if more than 24 hours
+    if (diff.inMinutes < 60) return '${diff.inMinutes}m';
+    else if (diff.inHours < 24) return '${diff.inHours}h ${diff.inMinutes.remainder(60)}m';
+    else return '${diff.inDays}d ${diff.inHours.remainder(24)}h';
   }
 
   Color _getStatusColor(String status, DateTime orderTime) {

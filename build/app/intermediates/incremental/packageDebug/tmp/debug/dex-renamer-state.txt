@@ -1,10 +1,10 @@
-#Thu Nov 07 20:15:30 CET 2024
-base.0=/home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/app/intermediates/dex/debug/mergeExtDexDebug/classes.dex
-base.1=/home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/app/intermediates/dex/debug/mergeLibDexDebug/0/classes.dex
-base.2=/home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/app/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex
-base.3=/home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/app/intermediates/dex/debug/mergeProjectDexDebug/1/classes.dex
-base.4=/home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/app/intermediates/dex/debug/mergeProjectDexDebug/12/classes.dex
-base.5=/home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/app/intermediates/dex/debug/mergeExtDexDebug/classes2.dex
+#Sat Nov 16 16:45:29 WET 2024
+base.0=/home/marcelo/github_repos/RestaurantOrderApp/build/app/intermediates/dex/debug/mergeExtDexDebug/classes.dex
+base.1=/home/marcelo/github_repos/RestaurantOrderApp/build/app/intermediates/dex/debug/mergeLibDexDebug/0/classes.dex
+base.2=/home/marcelo/github_repos/RestaurantOrderApp/build/app/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex
+base.3=/home/marcelo/github_repos/RestaurantOrderApp/build/app/intermediates/dex/debug/mergeProjectDexDebug/1/classes.dex
+base.4=/home/marcelo/github_repos/RestaurantOrderApp/build/app/intermediates/dex/debug/mergeProjectDexDebug/12/classes.dex
+base.5=/home/marcelo/github_repos/RestaurantOrderApp/build/app/intermediates/dex/debug/mergeExtDexDebug/classes2.dex
 path.0=classes.dex
 path.1=0/classes.dex
 path.2=0/classes.dex

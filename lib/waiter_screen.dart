@@ -131,7 +131,7 @@ class _WaiterScreenState extends State<WaiterScreen> {
             // Search Field (Optional)
             TextField(
               decoration: InputDecoration(
-                labelText: 'Search Items',
+                labelText: 'Search Tables',
                 prefixIcon: Icon(Icons.search),
               ),
               onChanged: (value) {
@@ -185,7 +185,7 @@ class _WaiterScreenState extends State<WaiterScreen> {
                           return Card(
                             color: tableColor,
                             child: ListTile(
-                              title: Text('Table ${table.id}'),
+                              title: Text('${table.id}'),
                               subtitle: StreamBuilder<QuerySnapshot>(
                                 stream: FirebaseFirestore.instance
                                     .collection('orders')

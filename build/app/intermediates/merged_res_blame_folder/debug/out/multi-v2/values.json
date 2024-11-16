@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.restaurant_app_new.app-mergeDebugResources-25:/values/values.xml",
+            "outputFile": "com.example.restaurant_app_new.app-mergeDebugResources-27:/values/values.xml",
             "map": [
                 {
                     "source": "/home/marcelo/.gradle/caches/transforms-3/83bd7fcc26403a15e00188c3570da0fa/transformed/jetified-play-services-base-18.0.1/res/values/values.xml",
@@ -97,22 +97,20 @@
                     }
                 },
                 {
-                    "source": "/home/marcelo/github_repos/Restaurant_app/restaurant_app_new/android/app/src/main/res/values/styles.xml",
+                    "source": "/home/marcelo/github_repos/RestaurantOrderApp/build/app/generated/res/google-services/debug/values/values.xml",
                     "from": {
-                        "startLines": "3,14",
-                        "startColumns": "4,4",
-                        "startOffsets": "173,818",
-                        "endLines": "7,16",
-                        "endColumns": "12,12",
-                        "endOffsets": "476,982"
+                        "startLines": "2,3,4,5,6,7",
+                        "startColumns": "4,4,4,4,4,4",
+                        "startOffsets": "55,137,241,350,470,567",
+                        "endColumns": "81,103,108,119,96,73",
+                        "endOffsets": "132,236,345,465,562,636"
                     },
                     "to": {
-                        "startLines": "1471,1475",
-                        "startColumns": "4,4",
-                        "startOffsets": "96106,96287",
-                        "endLines": "1474,1477",
-                        "endColumns": "12,12",
-                        "endOffsets": "96282,96451"
+                        "startLines": "362,363,364,365,366,376",
+                        "startColumns": "4,4,4,4,4,4",
+                        "startOffsets": "24530,24612,24716,24825,24945,26105",
+                        "endColumns": "81,103,108,119,96,73",
+                        "endOffsets": "24607,24711,24820,24940,25037,26174"
                     }
                 },
                 {
@@ -167,20 +165,22 @@
                     }
                 },
                 {
-                    "source": "/home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/app/generated/res/google-services/debug/values/values.xml",
+                    "source": "/home/marcelo/github_repos/RestaurantOrderApp/android/app/src/main/res/values/styles.xml",
                     "from": {
-                        "startLines": "2,3,4,5,6,7",
-                        "startColumns": "4,4,4,4,4,4",
-                        "startOffsets": "55,137,241,350,470,567",
-                        "endColumns": "81,103,108,119,96,73",
-                        "endOffsets": "132,236,345,465,562,636"
+                        "startLines": "3,14",
+                        "startColumns": "4,4",
+                        "startOffsets": "173,818",
+                        "endLines": "7,16",
+                        "endColumns": "12,12",
+                        "endOffsets": "476,982"
                     },
                     "to": {
-                        "startLines": "362,363,364,365,366,376",
-                        "startColumns": "4,4,4,4,4,4",
-                        "startOffsets": "24530,24612,24716,24825,24945,26105",
-                        "endColumns": "81,103,108,119,96,73",
-                        "endOffsets": "24607,24711,24820,24940,25037,26174"
+                        "startLines": "1471,1475",
+                        "startColumns": "4,4",
+                        "startOffsets": "96106,96287",
+                        "endLines": "1474,1477",
+                        "endColumns": "12,12",
+                        "endOffsets": "96282,96451"
                     }
                 },
                 {

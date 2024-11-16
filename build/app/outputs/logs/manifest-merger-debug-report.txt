@@ -1,12 +1,12 @@
 -- Merging decision tree log ---
 application
-INJECTED from /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/android/app/src/main/AndroidManifest.xml:2:5-33:19
-MERGED from [:cloud_firestore] /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/cloud_firestore/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-15:19
-MERGED from [:cloud_firestore] /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/cloud_firestore/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-15:19
-MERGED from [:firebase_auth] /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/firebase_auth/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-15:19
-MERGED from [:firebase_auth] /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/firebase_auth/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-15:19
-MERGED from [:firebase_core] /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/firebase_core/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-15:19
-MERGED from [:firebase_core] /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/firebase_core/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-15:19
+INJECTED from /home/marcelo/github_repos/RestaurantOrderApp/android/app/src/main/AndroidManifest.xml:2:5-33:19
+MERGED from [:cloud_firestore] /home/marcelo/github_repos/RestaurantOrderApp/build/cloud_firestore/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-15:19
+MERGED from [:cloud_firestore] /home/marcelo/github_repos/RestaurantOrderApp/build/cloud_firestore/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-15:19
+MERGED from [:firebase_auth] /home/marcelo/github_repos/RestaurantOrderApp/build/firebase_auth/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-15:19
+MERGED from [:firebase_auth] /home/marcelo/github_repos/RestaurantOrderApp/build/firebase_auth/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-15:19
+MERGED from [:firebase_core] /home/marcelo/github_repos/RestaurantOrderApp/build/firebase_core/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-15:19
+MERGED from [:firebase_core] /home/marcelo/github_repos/RestaurantOrderApp/build/firebase_core/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-15:19
 MERGED from [com.google.firebase:firebase-auth:22.3.1] /home/marcelo/.gradle/caches/transforms-3/22b73601ec23846af8d90aa927a7ecf6/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:28:5-73:19
 MERGED from [com.google.firebase:firebase-auth:22.3.1] /home/marcelo/.gradle/caches/transforms-3/22b73601ec23846af8d90aa927a7ecf6/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:28:5-73:19
 MERGED from [com.google.firebase:firebase-firestore:24.11.0] /home/marcelo/.gradle/caches/transforms-3/be5f8caa7690f9992e6725c6f4dc1e2b/transformed/jetified-firebase-firestore-24.11.0/AndroidManifest.xml:13:5-24:19
@@ -44,17 +44,18 @@ MERGED from [com.journeyapps:zxing-android-embedded:4.3.0] /home/marcelo/.gradle
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.7.0] /home/marcelo/.gradle/caches/transforms-3/b982785381abe549e569d09ac8601293/transformed/core-1.7.0/AndroidManifest.xml:24:18-86
 	android:name
-		INJECTED from /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/android/app/src/main/AndroidManifest.xml
+		INJECTED from /home/marcelo/github_repos/RestaurantOrderApp/android/app/src/main/AndroidManifest.xml
 manifest
-ADDED from /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/android/app/src/main/AndroidManifest.xml:1:1-45:12
-INJECTED from /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/android/app/src/main/AndroidManifest.xml:1:1-45:12
-INJECTED from /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/android/app/src/main/AndroidManifest.xml:1:1-45:12
-INJECTED from /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/android/app/src/main/AndroidManifest.xml:1:1-45:12
-MERGED from /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/android/app/src/main/AndroidManifest.xml:1:1-45:12
-MERGED from [:cloud_firestore] /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/cloud_firestore/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-17:12
-MERGED from [:firebase_auth] /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/firebase_auth/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-17:12
-MERGED from [:firebase_core] /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/firebase_core/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-17:12
-MERGED from [:qr_code_scanner] /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/qr_code_scanner/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-11:12
+ADDED from /home/marcelo/github_repos/RestaurantOrderApp/android/app/src/main/AndroidManifest.xml:1:1-45:12
+INJECTED from /home/marcelo/github_repos/RestaurantOrderApp/android/app/src/main/AndroidManifest.xml:1:1-45:12
+INJECTED from /home/marcelo/github_repos/RestaurantOrderApp/android/app/src/main/AndroidManifest.xml:1:1-45:12
+INJECTED from /home/marcelo/github_repos/RestaurantOrderApp/android/app/src/main/AndroidManifest.xml:1:1-45:12
+MERGED from /home/marcelo/github_repos/RestaurantOrderApp/android/app/src/main/AndroidManifest.xml:1:1-45:12
+MERGED from [:cloud_firestore] /home/marcelo/github_repos/RestaurantOrderApp/build/cloud_firestore/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-17:12
+MERGED from [:firebase_auth] /home/marcelo/github_repos/RestaurantOrderApp/build/firebase_auth/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-17:12
+MERGED from [:firebase_core] /home/marcelo/github_repos/RestaurantOrderApp/build/firebase_core/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-17:12
+MERGED from [:qr_code_scanner] /home/marcelo/github_repos/RestaurantOrderApp/build/qr_code_scanner/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-11:12
+MERGED from [:shared_preferences_android] /home/marcelo/github_repos/RestaurantOrderApp/build/shared_preferences_android/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.firebase:firebase-auth:22.3.1] /home/marcelo/.gradle/caches/transforms-3/22b73601ec23846af8d90aa927a7ecf6/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:17:1-75:12
 MERGED from [com.google.firebase:firebase-firestore:24.11.0] /home/marcelo/.gradle/caches/transforms-3/be5f8caa7690f9992e6725c6f4dc1e2b/transformed/jetified-firebase-firestore-24.11.0/AndroidManifest.xml:2:1-26:12
 MERGED from [com.google.firebase:firebase-common-ktx:20.4.3] /home/marcelo/.gradle/caches/transforms-3/2119d9d7f864ab69861785e36e14af22/transformed/jetified-firebase-common-ktx-20.4.3/AndroidManifest.xml:2:1-18:12
@@ -63,6 +64,8 @@ MERGED from [com.google.firebase:firebase-common:20.4.3] /home/marcelo/.gradle/c
 MERGED from [com.google.android.recaptcha:recaptcha:18.4.0] /home/marcelo/.gradle/caches/transforms-3/bfa7e487ada9a2c293b34333c2be31be/transformed/jetified-recaptcha-18.4.0/AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.window:window-java:1.0.0-beta04] /home/marcelo/.gradle/caches/transforms-3/6d2f8042b989e9f02a2914d91ea7c64c/transformed/jetified-window-java-1.0.0-beta04/AndroidManifest.xml:17:1-23:12
 MERGED from [androidx.window:window:1.0.0-beta04] /home/marcelo/.gradle/caches/transforms-3/1f063c91a907141588f51f373b1f5f4a/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:17:1-33:12
+MERGED from [androidx.datastore:datastore-preferences:1.0.0] /home/marcelo/.gradle/caches/transforms-3/b97a7650a846c2dd08589591c9598bd4/transformed/jetified-datastore-preferences-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.datastore:datastore:1.0.0] /home/marcelo/.gradle/caches/transforms-3/22da2347209e42d3f67009d797bf8861/transformed/jetified-datastore-1.0.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.appcompat:appcompat:1.4.2] /home/marcelo/.gradle/caches/transforms-3/48503fea57250778149ff167893de7ba/transformed/appcompat-1.4.2/AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.gms:play-services-auth-api-phone:17.4.0] /home/marcelo/.gradle/caches/transforms-3/5bc2d266c8752f6781ab5081c120a015/transformed/jetified-play-services-auth-api-phone-17.4.0/AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.firebase:firebase-appcheck-interop:17.0.0] /home/marcelo/.gradle/caches/transforms-3/0f3d89e48256e3738de629b9a67ec6c7/transformed/jetified-firebase-appcheck-interop-17.0.0/AndroidManifest.xml:15:1-25:12
@@ -103,47 +106,49 @@ MERGED from [com.journeyapps:zxing-android-embedded:4.3.0] /home/marcelo/.gradle
 MERGED from [io.grpc:grpc-android:1.57.2] /home/marcelo/.gradle/caches/transforms-3/78e9b1198ca2628c08b158f33faf066f/transformed/jetified-grpc-android-1.57.2/AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] /home/marcelo/.gradle/caches/transforms-3/94b0479f490275eac938c63bdf76853e/transformed/jetified-protolite-well-known-types-18.0.0/AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.annotation:annotation-experimental:1.1.0] /home/marcelo/.gradle/caches/transforms-3/a15c6353ebee292a754ca976f2ce177d/transformed/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:17:1-24:12
-INJECTED from /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/android/app/src/debug/AndroidManifest.xml:1:1-7:12
-INJECTED from /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/android/app/src/debug/AndroidManifest.xml:1:1-7:12
-INJECTED from /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/android/app/src/debug/AndroidManifest.xml:1:1-7:12
+INJECTED from /home/marcelo/github_repos/RestaurantOrderApp/android/app/src/debug/AndroidManifest.xml:1:1-7:12
+INJECTED from /home/marcelo/github_repos/RestaurantOrderApp/android/app/src/debug/AndroidManifest.xml:1:1-7:12
+INJECTED from /home/marcelo/github_repos/RestaurantOrderApp/android/app/src/debug/AndroidManifest.xml:1:1-7:12
 	package
-		INJECTED from /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/android/app/src/main/AndroidManifest.xml
-		ADDED from /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/android/app/src/main/AndroidManifest.xml:1:1-45:12
-		INJECTED from /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/android/app/src/debug/AndroidManifest.xml
+		INJECTED from /home/marcelo/github_repos/RestaurantOrderApp/android/app/src/main/AndroidManifest.xml
+		ADDED from /home/marcelo/github_repos/RestaurantOrderApp/android/app/src/main/AndroidManifest.xml:1:1-45:12
+		INJECTED from /home/marcelo/github_repos/RestaurantOrderApp/android/app/src/debug/AndroidManifest.xml
 	android:versionName
-		INJECTED from /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/android/app/src/main/AndroidManifest.xml
-		ADDED from /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/android/app/src/main/AndroidManifest.xml:1:1-45:12
-		INJECTED from /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/android/app/src/debug/AndroidManifest.xml
+		INJECTED from /home/marcelo/github_repos/RestaurantOrderApp/android/app/src/main/AndroidManifest.xml
+		ADDED from /home/marcelo/github_repos/RestaurantOrderApp/android/app/src/main/AndroidManifest.xml:1:1-45:12
+		INJECTED from /home/marcelo/github_repos/RestaurantOrderApp/android/app/src/debug/AndroidManifest.xml
 	android:versionCode
-		INJECTED from /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/android/app/src/main/AndroidManifest.xml
-		ADDED from /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/android/app/src/main/AndroidManifest.xml:1:1-45:12
-		INJECTED from /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/android/app/src/debug/AndroidManifest.xml
+		INJECTED from /home/marcelo/github_repos/RestaurantOrderApp/android/app/src/main/AndroidManifest.xml
+		ADDED from /home/marcelo/github_repos/RestaurantOrderApp/android/app/src/main/AndroidManifest.xml:1:1-45:12
+		INJECTED from /home/marcelo/github_repos/RestaurantOrderApp/android/app/src/debug/AndroidManifest.xml
 	xmlns:android
-		ADDED from /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/android/app/src/main/AndroidManifest.xml:1:11-69
+		ADDED from /home/marcelo/github_repos/RestaurantOrderApp/android/app/src/main/AndroidManifest.xml:1:11-69
 queries
-ADDED from /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/android/app/src/main/AndroidManifest.xml:39:5-44:15
+ADDED from /home/marcelo/github_repos/RestaurantOrderApp/android/app/src/main/AndroidManifest.xml:39:5-44:15
 intent#action:name:android.intent.action.PROCESS_TEXT+data:mimeType:text/plain
-ADDED from /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/android/app/src/main/AndroidManifest.xml:40:9-43:18
+ADDED from /home/marcelo/github_repos/RestaurantOrderApp/android/app/src/main/AndroidManifest.xml:40:9-43:18
 action#android.intent.action.PROCESS_TEXT
-ADDED from /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/android/app/src/main/AndroidManifest.xml:41:13-72
+ADDED from /home/marcelo/github_repos/RestaurantOrderApp/android/app/src/main/AndroidManifest.xml:41:13-72
 	android:name
-		ADDED from /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/android/app/src/main/AndroidManifest.xml:41:21-70
+		ADDED from /home/marcelo/github_repos/RestaurantOrderApp/android/app/src/main/AndroidManifest.xml:41:21-70
 data
-ADDED from /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/android/app/src/main/AndroidManifest.xml:42:13-50
+ADDED from /home/marcelo/github_repos/RestaurantOrderApp/android/app/src/main/AndroidManifest.xml:42:13-50
 	android:mimeType
-		ADDED from /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/android/app/src/main/AndroidManifest.xml:42:19-48
+		ADDED from /home/marcelo/github_repos/RestaurantOrderApp/android/app/src/main/AndroidManifest.xml:42:19-48
 uses-sdk
-INJECTED from /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/android/app/src/main/AndroidManifest.xml
-INJECTED from /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/android/app/src/main/AndroidManifest.xml
-MERGED from [:cloud_firestore] /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/cloud_firestore/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
-MERGED from [:cloud_firestore] /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/cloud_firestore/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
-MERGED from [:firebase_auth] /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/firebase_auth/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
-MERGED from [:firebase_auth] /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/firebase_auth/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
-MERGED from [:firebase_core] /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/firebase_core/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
-MERGED from [:firebase_core] /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/firebase_core/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
-MERGED from [:qr_code_scanner] /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/qr_code_scanner/intermediates/merged_manifest/debug/AndroidManifest.xml:6:5-9:67
-MERGED from [:qr_code_scanner] /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/qr_code_scanner/intermediates/merged_manifest/debug/AndroidManifest.xml:6:5-9:67
+INJECTED from /home/marcelo/github_repos/RestaurantOrderApp/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /home/marcelo/github_repos/RestaurantOrderApp/android/app/src/main/AndroidManifest.xml
+INJECTED from /home/marcelo/github_repos/RestaurantOrderApp/android/app/src/main/AndroidManifest.xml
+MERGED from [:cloud_firestore] /home/marcelo/github_repos/RestaurantOrderApp/build/cloud_firestore/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:cloud_firestore] /home/marcelo/github_repos/RestaurantOrderApp/build/cloud_firestore/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:firebase_auth] /home/marcelo/github_repos/RestaurantOrderApp/build/firebase_auth/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:firebase_auth] /home/marcelo/github_repos/RestaurantOrderApp/build/firebase_auth/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:firebase_core] /home/marcelo/github_repos/RestaurantOrderApp/build/firebase_core/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:firebase_core] /home/marcelo/github_repos/RestaurantOrderApp/build/firebase_core/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:qr_code_scanner] /home/marcelo/github_repos/RestaurantOrderApp/build/qr_code_scanner/intermediates/merged_manifest/debug/AndroidManifest.xml:6:5-9:67
+MERGED from [:qr_code_scanner] /home/marcelo/github_repos/RestaurantOrderApp/build/qr_code_scanner/intermediates/merged_manifest/debug/AndroidManifest.xml:6:5-9:67
+MERGED from [:shared_preferences_android] /home/marcelo/github_repos/RestaurantOrderApp/build/shared_preferences_android/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:shared_preferences_android] /home/marcelo/github_repos/RestaurantOrderApp/build/shared_preferences_android/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [com.google.firebase:firebase-auth:22.3.1] /home/marcelo/.gradle/caches/transforms-3/22b73601ec23846af8d90aa927a7ecf6/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:21:5-23:64
 MERGED from [com.google.firebase:firebase-auth:22.3.1] /home/marcelo/.gradle/caches/transforms-3/22b73601ec23846af8d90aa927a7ecf6/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:21:5-23:64
 MERGED from [com.google.firebase:firebase-firestore:24.11.0] /home/marcelo/.gradle/caches/transforms-3/be5f8caa7690f9992e6725c6f4dc1e2b/transformed/jetified-firebase-firestore-24.11.0/AndroidManifest.xml:6:5-44
@@ -160,6 +165,10 @@ MERGED from [androidx.window:window-java:1.0.0-beta04] /home/marcelo/.gradle/cac
 MERGED from [androidx.window:window-java:1.0.0-beta04] /home/marcelo/.gradle/caches/transforms-3/6d2f8042b989e9f02a2914d91ea7c64c/transformed/jetified-window-java-1.0.0-beta04/AndroidManifest.xml:19:5-21:41
 MERGED from [androidx.window:window:1.0.0-beta04] /home/marcelo/.gradle/caches/transforms-3/1f063c91a907141588f51f373b1f5f4a/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.window:window:1.0.0-beta04] /home/marcelo/.gradle/caches/transforms-3/1f063c91a907141588f51f373b1f5f4a/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.datastore:datastore-preferences:1.0.0] /home/marcelo/.gradle/caches/transforms-3/b97a7650a846c2dd08589591c9598bd4/transformed/jetified-datastore-preferences-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.datastore:datastore-preferences:1.0.0] /home/marcelo/.gradle/caches/transforms-3/b97a7650a846c2dd08589591c9598bd4/transformed/jetified-datastore-preferences-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.datastore:datastore:1.0.0] /home/marcelo/.gradle/caches/transforms-3/22da2347209e42d3f67009d797bf8861/transformed/jetified-datastore-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.datastore:datastore:1.0.0] /home/marcelo/.gradle/caches/transforms-3/22da2347209e42d3f67009d797bf8861/transformed/jetified-datastore-1.0.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.appcompat:appcompat:1.4.2] /home/marcelo/.gradle/caches/transforms-3/48503fea57250778149ff167893de7ba/transformed/appcompat-1.4.2/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.appcompat:appcompat:1.4.2] /home/marcelo/.gradle/caches/transforms-3/48503fea57250778149ff167893de7ba/transformed/appcompat-1.4.2/AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.android.gms:play-services-auth-api-phone:17.4.0] /home/marcelo/.gradle/caches/transforms-3/5bc2d266c8752f6781ab5081c120a015/transformed/jetified-play-services-auth-api-phone-17.4.0/AndroidManifest.xml:5:5-44
@@ -240,18 +249,18 @@ MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] /home/marcel
 MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] /home/marcelo/.gradle/caches/transforms-3/94b0479f490275eac938c63bdf76853e/transformed/jetified-protolite-well-known-types-18.0.0/AndroidManifest.xml:7:5-9:41
 MERGED from [androidx.annotation:annotation-experimental:1.1.0] /home/marcelo/.gradle/caches/transforms-3/a15c6353ebee292a754ca976f2ce177d/transformed/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.annotation:annotation-experimental:1.1.0] /home/marcelo/.gradle/caches/transforms-3/a15c6353ebee292a754ca976f2ce177d/transformed/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:20:5-22:41
-INJECTED from /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/android/app/src/debug/AndroidManifest.xml
-INJECTED from /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/android/app/src/debug/AndroidManifest.xml
+INJECTED from /home/marcelo/github_repos/RestaurantOrderApp/android/app/src/debug/AndroidManifest.xml
+INJECTED from /home/marcelo/github_repos/RestaurantOrderApp/android/app/src/debug/AndroidManifest.xml
 	tools:overrideLibrary
-		ADDED from [:qr_code_scanner] /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/qr_code_scanner/intermediates/merged_manifest/debug/AndroidManifest.xml:9:9-64
+		ADDED from [:qr_code_scanner] /home/marcelo/github_repos/RestaurantOrderApp/build/qr_code_scanner/intermediates/merged_manifest/debug/AndroidManifest.xml:9:9-64
 	android:targetSdkVersion
-		INJECTED from /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/android/app/src/main/AndroidManifest.xml
-		INJECTED from /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/android/app/src/debug/AndroidManifest.xml
+		INJECTED from /home/marcelo/github_repos/RestaurantOrderApp/android/app/src/main/AndroidManifest.xml
+		INJECTED from /home/marcelo/github_repos/RestaurantOrderApp/android/app/src/debug/AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/android/app/src/main/AndroidManifest.xml
-		INJECTED from /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/android/app/src/debug/AndroidManifest.xml
+		INJECTED from /home/marcelo/github_repos/RestaurantOrderApp/android/app/src/main/AndroidManifest.xml
+		INJECTED from /home/marcelo/github_repos/RestaurantOrderApp/android/app/src/debug/AndroidManifest.xml
 uses-permission#android.permission.INTERNET
-ADDED from /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/android/app/src/debug/AndroidManifest.xml:6:5-66
+ADDED from /home/marcelo/github_repos/RestaurantOrderApp/android/app/src/debug/AndroidManifest.xml:6:5-66
 MERGED from [com.google.firebase:firebase-auth:22.3.1] /home/marcelo/.gradle/caches/transforms-3/22b73601ec23846af8d90aa927a7ecf6/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:25:5-67
 MERGED from [com.google.firebase:firebase-auth:22.3.1] /home/marcelo/.gradle/caches/transforms-3/22b73601ec23846af8d90aa927a7ecf6/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:25:5-67
 MERGED from [com.google.firebase:firebase-firestore:24.11.0] /home/marcelo/.gradle/caches/transforms-3/be5f8caa7690f9992e6725c6f4dc1e2b/transformed/jetified-firebase-firestore-24.11.0/AndroidManifest.xml:11:5-67
@@ -259,13 +268,13 @@ MERGED from [com.google.firebase:firebase-firestore:24.11.0] /home/marcelo/.grad
 MERGED from [com.google.android.recaptcha:recaptcha:18.4.0] /home/marcelo/.gradle/caches/transforms-3/bfa7e487ada9a2c293b34333c2be31be/transformed/jetified-recaptcha-18.4.0/AndroidManifest.xml:7:5-67
 MERGED from [com.google.android.recaptcha:recaptcha:18.4.0] /home/marcelo/.gradle/caches/transforms-3/bfa7e487ada9a2c293b34333c2be31be/transformed/jetified-recaptcha-18.4.0/AndroidManifest.xml:7:5-67
 	android:name
-		ADDED from /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/android/app/src/debug/AndroidManifest.xml:6:22-64
+		ADDED from /home/marcelo/github_repos/RestaurantOrderApp/android/app/src/debug/AndroidManifest.xml:6:22-64
 service#com.google.firebase.components.ComponentDiscoveryService
-ADDED from [:cloud_firestore] /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/cloud_firestore/intermediates/merged_manifest/debug/AndroidManifest.xml:10:9-14:19
-MERGED from [:firebase_auth] /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/firebase_auth/intermediates/merged_manifest/debug/AndroidManifest.xml:10:9-14:19
-MERGED from [:firebase_auth] /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/firebase_auth/intermediates/merged_manifest/debug/AndroidManifest.xml:10:9-14:19
-MERGED from [:firebase_core] /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/firebase_core/intermediates/merged_manifest/debug/AndroidManifest.xml:10:9-14:19
-MERGED from [:firebase_core] /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/firebase_core/intermediates/merged_manifest/debug/AndroidManifest.xml:10:9-14:19
+ADDED from [:cloud_firestore] /home/marcelo/github_repos/RestaurantOrderApp/build/cloud_firestore/intermediates/merged_manifest/debug/AndroidManifest.xml:10:9-14:19
+MERGED from [:firebase_auth] /home/marcelo/github_repos/RestaurantOrderApp/build/firebase_auth/intermediates/merged_manifest/debug/AndroidManifest.xml:10:9-14:19
+MERGED from [:firebase_auth] /home/marcelo/github_repos/RestaurantOrderApp/build/firebase_auth/intermediates/merged_manifest/debug/AndroidManifest.xml:10:9-14:19
+MERGED from [:firebase_core] /home/marcelo/github_repos/RestaurantOrderApp/build/firebase_core/intermediates/merged_manifest/debug/AndroidManifest.xml:10:9-14:19
+MERGED from [:firebase_core] /home/marcelo/github_repos/RestaurantOrderApp/build/firebase_core/intermediates/merged_manifest/debug/AndroidManifest.xml:10:9-14:19
 MERGED from [com.google.firebase:firebase-auth:22.3.1] /home/marcelo/.gradle/caches/transforms-3/22b73601ec23846af8d90aa927a7ecf6/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:66:9-72:19
 MERGED from [com.google.firebase:firebase-auth:22.3.1] /home/marcelo/.gradle/caches/transforms-3/22b73601ec23846af8d90aa927a7ecf6/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:66:9-72:19
 MERGED from [com.google.firebase:firebase-firestore:24.11.0] /home/marcelo/.gradle/caches/transforms-3/be5f8caa7690f9992e6725c6f4dc1e2b/transformed/jetified-firebase-firestore-24.11.0/AndroidManifest.xml:14:9-23:19
@@ -281,25 +290,25 @@ MERGED from [com.google.firebase:firebase-common:20.4.3] /home/marcelo/.gradle/c
 	android:directBootAware
 		ADDED from [com.google.firebase:firebase-common:20.4.3] /home/marcelo/.gradle/caches/transforms-3/a33d41bcf3a2223df37a9b2a9c9d4c10/transformed/jetified-firebase-common-20.4.3/AndroidManifest.xml:32:13-43
 	android:name
-		ADDED from [:cloud_firestore] /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/cloud_firestore/intermediates/merged_manifest/debug/AndroidManifest.xml:10:18-89
+		ADDED from [:cloud_firestore] /home/marcelo/github_repos/RestaurantOrderApp/build/cloud_firestore/intermediates/merged_manifest/debug/AndroidManifest.xml:10:18-89
 meta-data#com.google.firebase.components:io.flutter.plugins.firebase.firestore.FlutterFirebaseFirestoreRegistrar
-ADDED from [:cloud_firestore] /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/cloud_firestore/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-13:85
+ADDED from [:cloud_firestore] /home/marcelo/github_repos/RestaurantOrderApp/build/cloud_firestore/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-13:85
 	android:value
-		ADDED from [:cloud_firestore] /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/cloud_firestore/intermediates/merged_manifest/debug/AndroidManifest.xml:13:17-82
+		ADDED from [:cloud_firestore] /home/marcelo/github_repos/RestaurantOrderApp/build/cloud_firestore/intermediates/merged_manifest/debug/AndroidManifest.xml:13:17-82
 	android:name
-		ADDED from [:cloud_firestore] /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/cloud_firestore/intermediates/merged_manifest/debug/AndroidManifest.xml:12:17-134
+		ADDED from [:cloud_firestore] /home/marcelo/github_repos/RestaurantOrderApp/build/cloud_firestore/intermediates/merged_manifest/debug/AndroidManifest.xml:12:17-134
 meta-data#com.google.firebase.components:io.flutter.plugins.firebase.auth.FlutterFirebaseAuthRegistrar
-ADDED from [:firebase_auth] /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/firebase_auth/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-13:85
+ADDED from [:firebase_auth] /home/marcelo/github_repos/RestaurantOrderApp/build/firebase_auth/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-13:85
 	android:value
-		ADDED from [:firebase_auth] /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/firebase_auth/intermediates/merged_manifest/debug/AndroidManifest.xml:13:17-82
+		ADDED from [:firebase_auth] /home/marcelo/github_repos/RestaurantOrderApp/build/firebase_auth/intermediates/merged_manifest/debug/AndroidManifest.xml:13:17-82
 	android:name
-		ADDED from [:firebase_auth] /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/firebase_auth/intermediates/merged_manifest/debug/AndroidManifest.xml:12:17-124
+		ADDED from [:firebase_auth] /home/marcelo/github_repos/RestaurantOrderApp/build/firebase_auth/intermediates/merged_manifest/debug/AndroidManifest.xml:12:17-124
 meta-data#com.google.firebase.components:io.flutter.plugins.firebase.core.FlutterFirebaseCoreRegistrar
-ADDED from [:firebase_core] /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/firebase_core/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-13:85
+ADDED from [:firebase_core] /home/marcelo/github_repos/RestaurantOrderApp/build/firebase_core/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-13:85
 	android:value
-		ADDED from [:firebase_core] /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/firebase_core/intermediates/merged_manifest/debug/AndroidManifest.xml:13:17-82
+		ADDED from [:firebase_core] /home/marcelo/github_repos/RestaurantOrderApp/build/firebase_core/intermediates/merged_manifest/debug/AndroidManifest.xml:13:17-82
 	android:name
-		ADDED from [:firebase_core] /home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/firebase_core/intermediates/merged_manifest/debug/AndroidManifest.xml:12:17-124
+		ADDED from [:firebase_core] /home/marcelo/github_repos/RestaurantOrderApp/build/firebase_core/intermediates/merged_manifest/debug/AndroidManifest.xml:12:17-124
 uses-permission#android.permission.ACCESS_NETWORK_STATE
 ADDED from [com.google.firebase:firebase-auth:22.3.1] /home/marcelo/.gradle/caches/transforms-3/22b73601ec23846af8d90aa927a7ecf6/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:26:5-79
 MERGED from [com.google.firebase:firebase-firestore:24.11.0] /home/marcelo/.gradle/caches/transforms-3/be5f8caa7690f9992e6725c6f4dc1e2b/transformed/jetified-firebase-firestore-24.11.0/AndroidManifest.xml:10:5-79

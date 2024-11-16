@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_api.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
-import 'package:flutter_dotenv/flutter_dotenv.dart'; // Keep this for mobile platforms
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
 import 'signin_screen.dart';
@@ -12,12 +10,16 @@ import 'kitchen_screen.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await Firebase.initializeApp(
-    options: await FirebaseApi.getFirebaseOptions(),
-  );
+  try {
+    await Firebase.initializeApp(
+      options: await FirebaseApi.getFirebaseOptions(),
+    );
+  } catch (e) {
+    print('Error initializing Firebase: $e');
+  }
 
-  // Enable Firebase Database Offline Persistence
-  FirebaseFirestore.instance.settings = Settings(persistenceEnabled: true);
+  // Proceed with the rest of your code
+  FirebaseFirestore.instance.settings = const Settings(persistenceEnabled: true);
 
   runApp(MyApp());
 }

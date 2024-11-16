@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.restaurant_app_new.app-mergeDebugResources-25:/values-zh-rCN/values-zh-rCN.xml",
+            "outputFile": "com.example.restaurant_app_new.app-mergeDebugResources-27:/values-zh-rCN/values-zh-rCN.xml",
             "map": [
                 {
                     "source": "/home/marcelo/.gradle/caches/transforms-3/83bd7fcc26403a15e00188c3570da0fa/transformed/jetified-play-services-base-18.0.1/res/values-zh-rCN/values.xml",
