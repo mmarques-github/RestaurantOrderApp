@@ -173,66 +173,106 @@ class _WaiterScreenState extends State<WaiterScreen> {
                         itemBuilder: (context, index) {
                           var table = tables[index];
                           var tableData = table.data() as Map<String, dynamic>;
-                          var tableState = tableData['state'] ?? 'Free';
-                          var tableColor = Colors.green; // Default color for Free state
 
-                          if (tableState == 'Waiting') {
-                            tableColor = Colors.yellow;
-                          } else if (tableState == 'Served') {
-                            tableColor = Colors.red;
-                          }
+                          return StreamBuilder<QuerySnapshot>(
+                            stream: FirebaseFirestore.instance
+                                .collection('orders')
+                                .where('tableId', isEqualTo: table.id)
+                                .snapshots(),
+                            builder: (context, orderSnapshot) {
+                              if (!orderSnapshot.hasData) {
+                                return Card(
+                                  color: Colors.green.shade100, // Default color for no orders
+                                  child: ListTile(
+                                    title: Text('${table.id}'),
+                                    subtitle: Text('No orders'),
+                                  ),
+                                );
+                              }
+                              var orders = orderSnapshot.data!.docs;
 
-                          return Card(
-                            color: tableColor,
-                            child: ListTile(
-                              title: Text('${table.id}'),
-                              subtitle: StreamBuilder<QuerySnapshot>(
-                                stream: FirebaseFirestore.instance
-                                    .collection('orders')
-                                    .where('tableId', isEqualTo: table.id)
-                                    .snapshots(),
-                                builder: (context, orderSnapshot) {
-                                  if (!orderSnapshot.hasData) {
-                                    return Text('Loading orders...');
+                              // Determine the table color based on order statuses
+                              Color tableColor = Colors.green.shade100; // Default color for no orders
+                              bool hasPendingOrPreparing = false;
+                              bool hasReady = false;
+                              bool allDeliveredOrPayed = false;
+                              bool allPayed = false;
+
+                              for (var order in orders) {
+                                var orderData = order.data() as Map<String, dynamic>;
+                                var orderStatus = orderData['orderStatus'];
+
+                                if (orderStatus == 'pending' || orderStatus == 'preparing') {
+                                  hasPendingOrPreparing = true;
+                                  allDeliveredOrPayed = false;
+                                  allPayed = false;
+                                } else if (orderStatus == 'ready') {
+                                  hasReady = true;
+                                  allDeliveredOrPayed = false;
+                                  allPayed = false;
+                                } else if (orderStatus == 'delivered' || orderStatus == 'payed') {
+                                    allDeliveredOrPayed = true;
+                                    allPayed = true;
+                                  if (orderStatus == 'delivered') {
+                                    allPayed = false;
                                   }
-                                  var orders = orderSnapshot.data!.docs;
+                                }
+                              }
 
-                                  var orderDetails = orders.map((order) {
-                                    var orderData = order.data() as Map<String, dynamic>;
+                              if (hasReady) {
+                                tableColor = Colors.blue.shade100;
+                              } else if (hasPendingOrPreparing) {
+                                tableColor = Colors.orange.shade100;
+                              } else if (allDeliveredOrPayed) {
+                                tableColor = Colors.yellow.shade100;
+                              } else if (allPayed) {
+                                tableColor = Colors.grey.shade100;
+                              }
 
-                                    // Find the matching item in the items collection
-                                    var selectedItem = items.firstWhere(
-                                      (item) =>
-                                          (item.data() as Map<String, dynamic>)['itemId'] ==
-                                          orderData['itemId']
-                                    );
+                              // Limit the number of orders displayed to 5
+                              var limitedOrders = orders.take(5).toList();
 
-                                    String itemName;
-                                    itemName = (selectedItem.data() as Map<String, dynamic>)['itemName'] ?? 'Unknown';
-                                  
-                                    return '${orderData['orderPortion']} x $itemName (${orderData['orderStatus']})';
-                                  }).join(', ');
+                              var orderDetails = limitedOrders.map((order) {
+                                var orderData = order.data() as Map<String, dynamic>;
 
-                                  return Text(orderDetails);
-                                },
-                              ),
-                              onTap: () {
-                                showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return TableDialog(
-                                      tableId: table.id,
-                                      onOrderAdded: () {
-                                        setState(() {
-                                          // Refresh the screen
-                                        });
+                                // Find the matching item in the items collection
+                                var selectedItem = items.firstWhere(
+                                  (item) =>
+                                      (item.data() as Map<String, dynamic>)['itemId'] ==
+                                      orderData['itemId'],
+                                );
+
+                                String itemName = selectedItem != null
+                                    ? (selectedItem.data() as Map<String, dynamic>)['itemName'] ?? 'Unknown'
+                                    : 'Unknown';
+
+                                return '${orderData['orderPortion']} x $itemName (${orderData['orderStatus']})';
+                              }).join(', ');
+
+                              return Card(
+                                color: tableColor,
+                                child: ListTile(
+                                  title: Text('${table.id}'),
+                                  subtitle: Text(orderDetails),
+                                  onTap: () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return TableDialog(
+                                          tableId: table.id,
+                                          onOrderAdded: () {
+                                            setState(() {
+                                              // Refresh the screen
+                                            });
+                                          },
+                                          selectedMenuType: selectedMenuType, // Pass the selected menu type
+                                        );
                                       },
-                                      selectedMenuType: selectedMenuType, // Pass the selected menu type
                                     );
                                   },
-                                );
-                              },
-                            ),
+                                ),
+                              );
+                            },
                           );
                         },
                       );

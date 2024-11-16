@@ -30,6 +30,7 @@ class _OrderDialogState extends State<OrderDialog> {
   String takeawayName = ''; // Add takeawayName variable
   String? username;
   int? userId; // Declare userId as nullable integer
+  final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
@@ -100,153 +101,210 @@ class _OrderDialogState extends State<OrderDialog> {
   @override
   void dispose() {
     searchController.dispose();
+    _scrollController.dispose();
     super.dispose();
   }
 
   Future<void> _saveMenuType(String menuType) async {
     await Preferences.setSelectedMenuType(menuType);
   }
-@override
-Widget build(BuildContext context) {
-  return AlertDialog(
-    title: Text('Add Order'),
-    content: Container(
-      width: double.maxFinite,
-      constraints: BoxConstraints(
-        maxHeight: MediaQuery.of(context).size.height * 0.8,
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min, // Prevent overflow by setting to min
-        children: [
-          // Your widget children go here
-          TextField(
-            controller: searchController,
-            decoration: InputDecoration(
-              labelText: 'Search Items',
-              prefixIcon: Icon(Icons.search),
+
+  final Color buttonBackgroundDefaultColor = Colors.grey.shade200;
+  final Color buttonBackgroundSelectedColor = Colors.purple.shade200;
+  final Color buttonOutlineDefaultColor = Colors.grey.shade900;
+  final Color buttonOutlineSelectedColor = Colors.purple.shade200;
+
+  Widget _buildMenuButtons() {
+    return Row(
+      children: [
+        Expanded(
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            controller: _scrollController,
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        itemMenuFilter = 'daily';
+                      });
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor:
+                        itemMenuFilter == 'daily' ? buttonBackgroundSelectedColor : buttonBackgroundDefaultColor,
+                      side: BorderSide(
+                        color: itemMenuFilter == 'daily' ? buttonOutlineSelectedColor : buttonOutlineDefaultColor,
+                      ),
+                    ),
+                    child: Text('Daily'),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        itemMenuFilter = 'fixed';
+                      });
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor:
+                          itemMenuFilter == 'fixed' ? buttonBackgroundSelectedColor : buttonBackgroundDefaultColor,
+                      side: BorderSide(
+                        color: itemMenuFilter == 'fixed' ? buttonOutlineSelectedColor : buttonOutlineDefaultColor,
+                      ),
+                    ),
+                    child: Text('Fixed'),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        itemMenuFilter = 'sunday';
+                      });
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor:
+                          itemMenuFilter == 'sunday' ? buttonBackgroundSelectedColor : buttonBackgroundDefaultColor,
+                      side: BorderSide(
+                        color: itemMenuFilter == 'sunday' ? buttonOutlineSelectedColor : buttonOutlineDefaultColor,
+                      ),
+                    ),
+                    child: Text('Sunday'),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        itemMenuFilter = 'entree';
+                      });
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor:
+                          itemMenuFilter == 'entree' ? buttonBackgroundSelectedColor : buttonBackgroundDefaultColor,
+                      side: BorderSide(
+                        color: itemMenuFilter == 'entree' ? buttonOutlineSelectedColor : buttonOutlineDefaultColor,
+                      ),
+                    ),
+                    child: Text('Entree'),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        itemMenuFilter = 'dessert';
+                      });
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor:
+                          itemMenuFilter == 'dessert' ? buttonBackgroundSelectedColor : buttonBackgroundDefaultColor,
+                      side: BorderSide(
+                        color: itemMenuFilter == 'dessert' ? buttonOutlineSelectedColor : buttonOutlineDefaultColor,
+                      ),
+                    ),
+                    child: Text('Dessert'),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        itemMenuFilter = 'drink';
+                      });
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor:
+                          itemMenuFilter == 'drink' ? buttonBackgroundSelectedColor : buttonBackgroundDefaultColor,
+                      side: BorderSide(
+                        color: itemMenuFilter == 'drink' ? buttonOutlineSelectedColor : buttonOutlineDefaultColor,
+                      ),
+                    ),
+                    child: Text('Drink'),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        itemMenuFilter = 'cafeteria';
+                      });
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor:
+                          itemMenuFilter == 'cafeteria' ? buttonBackgroundSelectedColor : buttonBackgroundDefaultColor,
+                      side: BorderSide(
+                        color: itemMenuFilter == 'cafeteria' ? buttonOutlineSelectedColor : buttonOutlineDefaultColor,
+                      ),
+                    ),
+                    child: Text('Cafeteria'),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        itemMenuFilter = 'spirits';
+                      });
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor:
+                          itemMenuFilter == 'spirits' ? buttonBackgroundSelectedColor : buttonBackgroundDefaultColor,
+                      side: BorderSide(
+                        color: itemMenuFilter == 'spirits' ? buttonOutlineSelectedColor : buttonOutlineDefaultColor,
+                      ),
+                    ),
+                    child: Text('Spirits'),
+                  ),
+                ),
+              ],
             ),
           ),
-            SizedBox(height: 16),
-            // Menu Type Selection Buttons
-            Wrap(
-              spacing: 8.0,
-              runSpacing: 4.0,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      itemMenuFilter = 'daily';
-                      _saveMenuType(itemMenuFilter);
-                    });
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor:
-                        itemMenuFilter == 'daily' ? Colors.blue : Colors.grey,
-                  ),
-                  child: Text('Daily'),
+        ),
+      ],
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: Text('Add Order'),
+      content: Container(
+        width: double.maxFinite,
+        constraints: BoxConstraints(
+          maxHeight: MediaQuery.of(context).size.height * 0.8,
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min, // Prevent overflow by setting to min
+          children: [
+            // Your widget children go here
+            TextField(
+              controller: searchController,
+                decoration: InputDecoration(
+                labelText: 'Search Items',
+                prefixIcon: Icon(Icons.search),
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      itemMenuFilter = 'fixed';
-                      _saveMenuType(itemMenuFilter);
-                    });
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor:
-                        itemMenuFilter == 'fixed' ? Colors.blue : Colors.grey,
-                  ),
-                  child: Text('Fixed'),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      itemMenuFilter = 'sunday';
-                      _saveMenuType(itemMenuFilter);
-                    });
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor:
-                        itemMenuFilter == 'sunday' ? Colors.blue : Colors.grey,
-                  ),
-                  child: Text('Sunday'),
-                ),
-              ],
-            ),
-            SizedBox(height: 16),
-            // Item Type Filtering Buttons
-            Wrap(
-              spacing: 8.0,
-              runSpacing: 4.0,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      itemMenuFilter = 'entree';
-                    });
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor:
-                        itemMenuFilter == 'entree' ? Colors.blue : Colors.grey,
-                  ),
-                  child: Text('Entree'),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      itemMenuFilter = 'dessert';
-                    });
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor:
-                        itemMenuFilter == 'dessert' ? Colors.blue : Colors.grey,
-                  ),
-                  child: Text('Dessert'),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      itemMenuFilter = 'drink';
-                    });
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor:
-                        itemMenuFilter == 'drink' ? Colors.blue : Colors.grey,
-                  ),
-                  child: Text('Drink'),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      itemMenuFilter = 'cafeteria';
-                    });
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor:
-                        itemMenuFilter == 'cafeteria' ? Colors.blue : Colors.grey,
-                  ),
-                  child: Text('Cafeteria'),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      itemMenuFilter = 'spirits';
-                    });
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor:
-                        itemMenuFilter == 'spirits' ? Colors.blue : Colors.grey,
-                  ),
-                  child: Text('Spirits'),
-                ),
-              ],
-            ),
-            SizedBox(height: 16),
-            // Expanded ListView
-            Expanded(
-              child: StreamBuilder<QuerySnapshot>(
-                stream:
-                    FirebaseFirestore.instance.collection('items').snapshots(),
+              ),
+              SizedBox(height: 16),
+              // Menu Type Selection Buttons
+              _buildMenuButtons(),
+              SizedBox(height: 16),
+              // User Information
+              SizedBox(height: 16),
+              // Expanded ListView
+              Expanded(
+                child: StreamBuilder<QuerySnapshot>(
+                stream: FirebaseFirestore.instance.collection('items').snapshots(),
                 builder: (context, snapshot) {
                   if (!snapshot.hasData) {
                     return Center(child: CircularProgressIndicator());
@@ -345,7 +403,10 @@ Widget build(BuildContext context) {
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor:
-                              orderType == 'table' ? Colors.blue : Colors.grey,
+                              orderType == 'table' ? buttonBackgroundSelectedColor : buttonBackgroundDefaultColor,
+                          side: BorderSide(
+                            color: orderType == 'table' ? buttonOutlineSelectedColor : buttonOutlineDefaultColor,
+                          ),
                         ),
                         child: Text('Table'),
                       ),
@@ -358,8 +419,13 @@ Widget build(BuildContext context) {
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: orderType == 'takeaway'
-                              ? Colors.blue
-                              : Colors.grey,
+                              ? buttonBackgroundSelectedColor
+                              : buttonBackgroundDefaultColor,
+                          side: BorderSide(
+                            color: orderType == 'takeaway'
+                                ? buttonOutlineSelectedColor
+                                : buttonOutlineDefaultColor,
+                          ),
                         ),
                         child: Text('Takeaway'),
                       ),
@@ -420,7 +486,7 @@ Widget build(BuildContext context) {
                           context: context,
                           initialDate: DateTime.now(),
                           firstDate: DateTime.now(),
-                          lastDate: DateTime(2101), // Change this line
+                          lastDate: DateTime.now().add(Duration(days: 365 * 100)), // Check if the change to this line is bug free
                         );
                         if (pickedDate != null) {
                           TimeOfDay? pickedTime = await showTimePicker(

@@ -65,15 +65,16 @@ samples, guidance on mobile development, and a full API reference.
 
 Bellow is a list of features ***to be implemented***:
 - [x] Add "Add table" button that pops an Add table dialog
-- [ ] Add some sort of "Cookie" to keep record of:
-    - [ ] On the Initial/Kitchen Screen record :
+- [x] Add some sort of "Cookie" to keep record of:
+    - [x] On the Initial/Kitchen Screen record :
         - [x] Type of Menu ( Daily, Fixed, Sunday)
-        - [ ] Order grouping ( Order by time/ Group orders)
+        - [x] Order grouping ( Order by time/ Group orders)
     - [x] Add Order Dialog (Remember Menu Type)
-    - [ ] Table Filtering by prefix in Waiter Screen
-
+- [ ] On the kitchen screen add to the left of "Group by Item":
+    - [ ] Show only takeaway
+    - [ ] Show only tables
 - [ ] Fill the database with the menus and drinks
-- [ ] Add order grouping ( Order by time/ Group orders by MenuItem)
+- [x] Add order grouping ( Order by time/ Group orders by MenuItem)
     - Group by menuItem should look like this
         Sum(Portions) - DishName
         - Portions x DishName table.id/takeaway_name - user.name - OrderTime/DeliveryTime - OrderId...
@@ -91,13 +92,13 @@ Bellow is a list of features ***to be implemented***:
 - [ ] Waiter Screem should open ***Table dialogs*** or ***table screens*** (_discuss_)
     - [ ] Add order should be available in **Waiter Screen** and **Table Dialog**.
 
-- [ ] Some items should not be available to add half portions (e.g. soups, coffees, etc)
+- [ ] Introduce half-portion items (i.e. Bacalhau c/ Batatas à Murro (1/2))
 
-- [ ] Waiter Screen should allow the waiter to "Finish" the table. Using a ***Bill button***.
+- [x] Waiter Screen should allow the waiter to "Finish" the table. Using a ***Clear table***.
 
 - [ ] Show user names on the:
     - [ ] Waiter and Kitchen Screen
-    - [ ] Orders (so that you know who asked for it)
+    - [x] Orders (so that you know who asked for it)
 
 - [ ] List users and allow Kitchen Screen to Remove and Add/Register from Kitchen Screen (**Dialog**)
 

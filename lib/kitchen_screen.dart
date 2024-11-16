@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-// Import shared_preferences
 import 'dart:async';
 import 'order_dialog.dart'; // Import the OrderDialog
 import 'user_model.dart';
@@ -165,7 +164,6 @@ class _KitchenScreenState extends State<KitchenScreen> {
                           return Center(child: CircularProgressIndicator());
                         }
                         if (snapshot.hasError) {
-                          // print('Error fetching orders: ${snapshot.error}');
                           return Center(child: Text('Error: ${snapshot.error}'));
                         }
                         if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
@@ -184,46 +182,47 @@ class _KitchenScreenState extends State<KitchenScreen> {
                         if (groupByItem) {
                           // Grouping Logic
                           var ordersByItemId =
-                            <int, List<QueryDocumentSnapshot>>{};
+                              <int, List<QueryDocumentSnapshot>>{};
                           for (var order in orders) {
-                          int itemId = order['itemId'];
-                          if (!ordersByItemId.containsKey(itemId)) {
-                            ordersByItemId[itemId] = [];
-                          }
-                          ordersByItemId[itemId]!.add(order);
+                            int itemId = order['itemId'];
+                            if (!ordersByItemId.containsKey(itemId)) {
+                              ordersByItemId[itemId] = [];
+                            }
+                            ordersByItemId[itemId]!.add(order);
                           }
 
                           var groupedOrders = ordersByItemId.entries.toList();
 
                           return ListView.builder(
-                          itemCount: groupedOrders.length,
-                          itemBuilder: (context, index) {
-                            var entry = groupedOrders[index];
-                            var itemId = entry.key;
-                            var ordersList = entry.value;
-                            double totalPortions = ordersList.fold(
-                              0.0,
-                              (sum, order) => sum +
-                                (order['orderPortion'] as num)
-                                  .toDouble());
-                            var selectedItem = items?.firstWhere(
-                              (item) =>
-                                (item.data() as Map<String, dynamic>)[
-                                  'itemId'] ==
-                                itemId);
-                            String itemName = selectedItem != null
-                              ? (selectedItem.data()
-                                as Map<String, dynamic>)['itemName']
-                              : 'Unknown';
+                            itemCount: groupedOrders.length,
+                            itemBuilder: (context, index) {
+                              var entry = groupedOrders[index];
+                              var itemId = entry.key;
+                              var ordersList = entry.value;
+                              double totalPortions = ordersList.fold(
+                                  0.0,
+                                  (sum, order) =>
+                                      sum +
+                                      (order['orderPortion'] as num)
+                                          .toDouble());
+                              var selectedItem = items?.firstWhere(
+                                  (item) =>
+                                      (item.data() as Map<String, dynamic>)[
+                                          'itemId'] ==
+                                      itemId);
+                              String itemName = selectedItem != null
+                                  ? (selectedItem.data()
+                                      as Map<String, dynamic>)['itemName']
+                                  : 'Unknown';
 
-                            return GroupedOrderCard(
-                            itemId: itemId.toString(),
-                            itemName: itemName,
-                            totalPortions: totalPortions,
-                            orders: ordersList,
-                            items: items,
-                            );
-                          },
+                              return GroupedOrderCard(
+                                itemId: itemId.toString(),
+                                itemName: itemName,
+                                totalPortions: totalPortions,
+                                orders: ordersList,
+                                items: items,
+                              );
+                            },
                           );
                         } else {
                           // Individual Orders Logic
@@ -237,11 +236,12 @@ class _KitchenScreenState extends State<KitchenScreen> {
                             var timeB = orderTypeB == 'table'
                                 ? b['orderTime']
                                 : b['deliveryTime'];
-                            return (timeA as Timestamp)
-                                .compareTo(timeB as Timestamp);
+                            if (timeA == null || timeA == "" || timeB == null || timeB == "") {
+                              return 0;
+                            }
+                            return timeA.compareTo(timeB);
                           });
 
-                          // print('Orders fetched: ${orders.length}'); // Debug statement
                           return ListView.builder(
                             itemCount: orders.length,
                             itemBuilder: (context, index) {
@@ -266,8 +266,7 @@ class _KitchenScreenState extends State<KitchenScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  // Menu Type Dropdown
-                  // Replace the MenuType dropdown by buttons where only one can be latched at a time
+                  // Menu Type Buttons
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -279,7 +278,9 @@ class _KitchenScreenState extends State<KitchenScreen> {
                           });
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: selectedMenuType == 'Daily' ? Colors.blue : Colors.grey,
+                          backgroundColor: selectedMenuType == 'Daily'
+                              ? Colors.blue
+                              : Colors.grey,
                         ),
                         child: Text('Daily'),
                       ),
@@ -292,7 +293,9 @@ class _KitchenScreenState extends State<KitchenScreen> {
                           });
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: selectedMenuType == 'Fixed' ? Colors.blue : Colors.grey,
+                          backgroundColor: selectedMenuType == 'Fixed'
+                              ? Colors.blue
+                              : Colors.grey,
                         ),
                         child: Text('Fixed'),
                       ),
@@ -305,7 +308,9 @@ class _KitchenScreenState extends State<KitchenScreen> {
                           });
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: selectedMenuType == 'Sunday' ? Colors.blue : Colors.grey,
+                          backgroundColor: selectedMenuType == 'Sunday'
+                              ? Colors.blue
+                              : Colors.grey,
                         ),
                         child: Text('Sunday'),
                       ),
@@ -487,11 +492,20 @@ class _GroupedOrderCardState extends State<GroupedOrderCard> {
     String worstStatus = 'ready';
 
     for (var order in widget.orders) {
-      Timestamp orderTime = order['orderTime'];
-      Timestamp? deliveryTime = order['deliveryTime'];
-      Duration? delay = order['orderType'] == 'table'
-          ? DateTime.now().difference(orderTime.toDate())
-          : DateTime.now().difference(deliveryTime!.toDate());
+      Timestamp? orderTime = order['orderTime'] as Timestamp?;
+      Timestamp? deliveryTime = order['deliveryTime'] as Timestamp?;
+      Duration delay = Duration.zero;
+
+      if (order['orderType'] == 'table') {
+        if (orderTime != null && orderTime != "") {
+          delay = DateTime.now().difference(orderTime.toDate());
+        }
+      } else {
+        if (deliveryTime != null && deliveryTime != "") {
+          delay = DateTime.now().difference(deliveryTime.toDate());
+        }
+      }
+
       if (delay.inMinutes < 0) {
         delay = Duration.zero;
       }
@@ -522,9 +536,10 @@ class _GroupedOrderCardState extends State<GroupedOrderCard> {
       }
     }
 
-    String totalPortionText = widget.totalPortions == widget.totalPortions.toInt()
-        ? widget.totalPortions.toInt().toString()
-        : widget.totalPortions.toStringAsFixed(1);
+    String totalPortionText =
+        widget.totalPortions == widget.totalPortions.toInt()
+            ? widget.totalPortions.toInt().toString()
+            : widget.totalPortions.toStringAsFixed(1);
 
     return Card(
       color: cardColor,
@@ -533,8 +548,8 @@ class _GroupedOrderCardState extends State<GroupedOrderCard> {
           ListTile(
             title: Text('$totalPortionText x ${widget.itemName}'),
             trailing: IconButton(
-              icon: Icon(
-                  isExpanded ? Icons.expand_less : Icons.expand_more),
+              icon:
+                  Icon(isExpanded ? Icons.expand_less : Icons.expand_more),
               onPressed: () {
                 setState(() {
                   isExpanded = !isExpanded;
@@ -578,17 +593,27 @@ class OrderCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Timestamp orderTime = order['orderTime'];
-    Timestamp? deliveryTime = order['deliveryTime'];
-    Duration? delay = order['orderType'] == 'table'
-        ? DateTime.now().difference(orderTime.toDate())
-        : DateTime.now().difference(deliveryTime!.toDate());
+    Timestamp? orderTime = order['orderTime'] as Timestamp?;
+    Timestamp? deliveryTime = order['deliveryTime'] as Timestamp?;
+    Duration delay = Duration.zero;
+
+    if (order['orderType'] == 'table') {
+    if (orderTime != null && orderTime != "") {
+        delay = DateTime.now().difference(orderTime.toDate());
+      }
+    } else {
+      if (deliveryTime != null && deliveryTime != "") {
+        delay = DateTime.now().difference(deliveryTime.toDate());
+      }
+    }
+
     if (delay.inMinutes < 0) {
       delay = Duration.zero;
     }
 
     QueryDocumentSnapshot<Object?>? selectedItem = items?.firstWhereOrNull(
-      (item) => (item.data() as Map<String, dynamic>)['itemId'] == order['itemId'],
+      (item) =>
+          (item.data() as Map<String, dynamic>)['itemId'] == order['itemId'],
     );
 
     String itemName = selectedItem != null
@@ -597,9 +622,18 @@ class OrderCard extends StatelessWidget {
     String orderTypeString = order['orderType'] == 'takeaway'
         ? '${order['takeawayName']}'
         : 'Table ${order['tableId']}';
-    String orderTimeString = order['orderType'] == 'table'
-        ? 'Order Time: ${orderTime.toDate().toString().split('.')[0]}'
-        : 'Delivery Time: ${deliveryTime!.toDate().toString().split('.')[0]}';
+    String orderTimeString = 'Unknown Time';
+    if (order['orderType'] == 'table') {
+      if (orderTime != null) {
+        orderTimeString =
+            'Order Time: ${orderTime.toDate().toString().split('.')[0]}';
+      }
+    } else {
+      if (deliveryTime != null) {
+        orderTimeString =
+            'Delivery Time: ${deliveryTime.toDate().toString().split('.')[0]}';
+      }
+    }
     double orderPortion = order['orderPortion'];
     String orderPortionText = orderPortion == orderPortion.toInt()
         ? orderPortion.toInt().toString()
@@ -678,8 +712,8 @@ class OrderCard extends StatelessWidget {
                       builder: (BuildContext context) {
                         return AlertDialog(
                           title: Text('Delete Order'),
-                          content: Text(
-                              'Are you sure you want to delete this order?'),
+                          content:
+                              Text('Are you sure you want to delete this order?'),
                           actions: [
                             TextButton(
                               onPressed: () {

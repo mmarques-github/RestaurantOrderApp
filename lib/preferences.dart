@@ -11,7 +11,7 @@ class Preferences {
 
   static Future<String> getSelectedMenuType() async {
     final prefs = await SharedPreferences.getInstance();
-    return prefs.getString(_keySelectedMenuType) ?? 'Daily';
+    return prefs.getString(_keySelectedMenuType) ?? 'Daily'; // Default value
   }
 
   // Add these methods for username
@@ -23,5 +23,15 @@ class Preferences {
   static Future<String?> getUsername() async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getString(_keyUsername);
+  }
+
+  static Future<void> setSelectedItemType(String itemType) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('selectedItemType', itemType);
+  }
+
+  static Future<String> getSelectedItemType() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString('selectedItemType') ?? 'Menu'; // Default value
   }
 }

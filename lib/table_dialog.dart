@@ -93,6 +93,44 @@ class _TableDialogState extends State<TableDialog> {
     }
   }
 
+  Future<void> _clearTable() async {
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Confirm Clear Table'),
+          content: const Text('Are you sure you want to delete all orders for this table?'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(false),
+              child: const Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(true),
+              child: const Text('Clear Table'),
+            ),
+          ],
+        );
+      },
+    );
+
+    if (confirmed == true) {
+      final orders = await FirebaseFirestore.instance
+          .collection('orders')
+          .where('tableId', isEqualTo: widget.tableId)
+          .get();
+
+      for (var order in orders.docs) {
+        await FirebaseFirestore.instance
+            .collection('orders')
+            .doc(order.id)
+            .delete();
+      }
+
+      Navigator.of(context).pop(); // Close the dialog after clearing the table
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final deviceWidth = MediaQuery.of(context).size.width;
@@ -107,9 +145,18 @@ class _TableDialogState extends State<TableDialog> {
     final double iconButtonSize = isSmallScreen ? 18 : 24; // Smaller size for small screens
 
     return AlertDialog(
-      title: Text(
-        'Table ${widget.tableId}',
-        style: TextStyle(fontSize: dialogTitleFontSize),
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            'Table ${widget.tableId}',
+            style: TextStyle(fontSize: dialogTitleFontSize),
+          ),
+          IconButton(
+            icon: Icon(Icons.close),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+        ],
       ),
       content: SizedBox(
         width: double.maxFinite,
@@ -290,10 +337,13 @@ class _TableDialogState extends State<TableDialog> {
         ),
       ),
       actions: [
-        TextButton(
-          onPressed: () => Navigator.of(context).pop(),
+        ElevatedButton(
+          onPressed: _clearTable,
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.red.shade100, // Red background for the clear table button
+          ),
           child: Text(
-            'Close',
+            'Clear Table',
             style: TextStyle(fontSize: buttonFontSize),
           ),
         ),
