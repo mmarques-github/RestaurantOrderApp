@@ -1,0 +1,14 @@
+/home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/linux/x64/debug/CMakeFiles/restaurant_app_new.dir
+/home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/linux/x64/debug/CMakeFiles/edit_cache.dir
+/home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/linux/x64/debug/CMakeFiles/rebuild_cache.dir
+/home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/linux/x64/debug/CMakeFiles/list_install_components.dir
+/home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/linux/x64/debug/CMakeFiles/install.dir
+/home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/linux/x64/debug/CMakeFiles/install/local.dir
+/home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/linux/x64/debug/CMakeFiles/install/strip.dir
+/home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/linux/x64/debug/flutter/CMakeFiles/flutter_assemble.dir
+/home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/linux/x64/debug/flutter/CMakeFiles/edit_cache.dir
+/home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/linux/x64/debug/flutter/CMakeFiles/rebuild_cache.dir
+/home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/linux/x64/debug/flutter/CMakeFiles/list_install_components.dir
+/home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/linux/x64/debug/flutter/CMakeFiles/install.dir
+/home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/linux/x64/debug/flutter/CMakeFiles/install/local.dir
+/home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/linux/x64/debug/flutter/CMakeFiles/install/strip.dir

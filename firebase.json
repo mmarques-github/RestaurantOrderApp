@@ -1,0 +1,28 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "oportal-fd9c0",
+          "appId": "1:856883764242:android:2978b0bb17f64861bb8ccb",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "oportal-fd9c0",
+          "configurations": {
+            "android": "1:856883764242:android:2978b0bb17f64861bb8ccb",
+            "ios": "1:856883764242:ios:6a2d5d26c923eb3dbb8ccb",
+            "macos": "1:856883764242:ios:6a2d5d26c923eb3dbb8ccb",
+            "web": "1:856883764242:web:0ae0e6a9fa586be4bb8ccb",
+            "windows": "1:856883764242:web:10ddf5baa3c8045fbb8ccb"
+          }
+        }
+      }
+    }
+  },
+  "database": {
+    "rules": "database.rules.json"
+  }
+}
