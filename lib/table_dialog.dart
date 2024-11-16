@@ -56,6 +56,7 @@ class _TableDialogState extends State<TableDialog> {
           stream: FirebaseFirestore.instance
               .collection('orders')
               .where('tableId', isEqualTo: widget.tableId)
+              .where('orderType', isEqualTo: 'table')
               .snapshots(),
           builder: (context, snapshot) {
             if (!snapshot.hasData) {
@@ -71,15 +72,14 @@ class _TableDialogState extends State<TableDialog> {
             orders.sort((a, b) {
               var statusA = (a.data() as Map<String, dynamic>)['orderStatus'] as String;
               var statusB = (b.data() as Map<String, dynamic>)['orderStatus'] as String;
-              var timeA = (a.data() as Map<String, dynamic>)['orderTime'] as Timestamp;
-              var timeB = (b.data() as Map<String, dynamic>)['orderTime'] as Timestamp;
+              var timeA = ((a.data() as Map<String, dynamic>)['orderTime'] as Timestamp?) ?? Timestamp.now();
+              var timeB = ((b.data() as Map<String, dynamic>)['orderTime'] as Timestamp?) ?? Timestamp.now();
 
               if (statusA != statusB) {
-                // Custom status ordering
                 final statusOrder = ['pending', 'preparing', 'ready', 'delivered'];
                 return statusOrder.indexOf(statusA) - statusOrder.indexOf(statusB);
               }
-              return timeB.compareTo(timeA); // Newer orders first
+              return timeB.compareTo(timeA);
             });
 
             return ListView.builder(
@@ -89,7 +89,7 @@ class _TableDialogState extends State<TableDialog> {
                 var order = orders[index];
                 var orderData = order.data() as Map<String, dynamic>;
                 var orderStatus = orderData['orderStatus'];
-                var orderTime = (orderData['orderTime'] as Timestamp).toDate();
+                var orderTime = ((orderData['orderTime'] as Timestamp?) ?? Timestamp.now()).toDate();
                 var orderColor = _getStatusColor(orderStatus, orderTime);
                 return FutureBuilder<QuerySnapshot>(
                   future: FirebaseFirestore.instance
