@@ -23,38 +23,36 @@ class KitchenScreen extends StatefulWidget {
 }
 
 class _KitchenScreenState extends State<KitchenScreen> {
-  String? username; // Declare a variable for username
-
-  String selectedMenuType = 'Daily'; // Default selected menu type
-  String searchQuery = ''; // Search query for filtering items
-  Stream<QuerySnapshot> itemsStream =
-      FirebaseFirestore.instance.collection('items').snapshots();
+  String? username;
+  String selectedMenuType = 'Daily';
+  String searchQuery = '';
+  Stream<QuerySnapshot> itemsStream = FirebaseFirestore.instance.collection('items').snapshots();
   List<QueryDocumentSnapshot>? items;
   Timer? _timer;
-  bool isKitchenScreen = true; // Track the current screen
-  bool groupByItem = false; // Added to track the grouping state
+  bool isKitchenScreen = true;
+  bool groupByItem = false;
+
+  // **Add these variables for the toggles**
+  bool showTableOrders = true;
+  bool showTakeawayOrders = true;
 
   @override
   void initState() {
     super.initState();
     loadUsername();
-    // Lock orientation to landscape
+    _loadMenuType();
+    _loadPreferences(); // Load saved preferences
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.landscapeRight,
       DeviceOrientation.landscapeLeft,
     ]);
 
-    // Fetch items data once and cache it
     itemsStream.listen((snapshot) {
       setState(() {
         items = snapshot.docs;
       });
     });
 
-    // Load the saved menu type
-    _loadMenuType();
-
-    // Refresh data every minute
     _timer = Timer.periodic(Duration(seconds: 60), (timer) {
       setState(() {});
     });
@@ -65,19 +63,6 @@ class _KitchenScreenState extends State<KitchenScreen> {
     setState(() {
       username = storedUsername;
     });
-  }
-
-  @override
-  void dispose() {
-    // Reset orientation to default when leaving the screen
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
-
-    // Cancel the timer
-    _timer?.cancel();
-    super.dispose();
   }
 
   Future<void> _loadMenuType() async {
@@ -91,10 +76,28 @@ class _KitchenScreenState extends State<KitchenScreen> {
     await Preferences.setSelectedMenuType(menuType);
   }
 
+  // **Load preferences for the toggles**
+  Future<void> _loadPreferences() async {
+    showTableOrders = await Preferences.getShowTableOrders();
+    showTakeawayOrders = await Preferences.getShowTakeawayOrders();
+    groupByItem = await Preferences.getGroupByItem();
+    setState(() {});
+  }
+
   void _toggleScreen() {
     setState(() {
       isKitchenScreen = !isKitchenScreen;
     });
+  }
+
+  @override
+  void dispose() {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+    _timer?.cancel();
+    super.dispose();
   }
 
   @override
@@ -137,14 +140,37 @@ class _KitchenScreenState extends State<KitchenScreen> {
               flex: 2,
               child: Column(
                 children: [
-                  // Group by Item Toggle
+                  // **Add the new toggles**
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
+                      Text('Show Table Orders'),
+                      Switch(
+                        value: showTableOrders,
+                        onChanged: (value) async {
+                          await Preferences.setShowTableOrders(value);
+                          setState(() {
+                            showTableOrders = value;
+                          });
+                        },
+                      ),
+                      SizedBox(width: 16),
+                      Text('Show Takeaway Orders'),
+                      Switch(
+                        value: showTakeawayOrders,
+                        onChanged: (value) async {
+                          await Preferences.setShowTakeawayOrders(value);
+                          setState(() {
+                            showTakeawayOrders = value;
+                          });
+                        },
+                      ),
+                      SizedBox(width: 16),
                       Text('Group by Item'),
                       Switch(
                         value: groupByItem,
-                        onChanged: (value) {
+                        onChanged: (value) async {
+                          await Preferences.setGroupByItem(value);
                           setState(() {
                             groupByItem = value;
                           });
@@ -155,12 +181,9 @@ class _KitchenScreenState extends State<KitchenScreen> {
                   // Expanded Orders List
                   Expanded(
                     child: StreamBuilder<QuerySnapshot>(
-                      stream: FirebaseFirestore.instance
-                          .collection('orders')
-                          .snapshots(),
+                      stream: FirebaseFirestore.instance.collection('orders').snapshots(),
                       builder: (context, snapshot) {
-                        if (snapshot.connectionState ==
-                            ConnectionState.waiting) {
+                        if (snapshot.connectionState == ConnectionState.waiting) {
                           return Center(child: CircularProgressIndicator());
                         }
                         if (snapshot.hasError) {
@@ -173,16 +196,19 @@ class _KitchenScreenState extends State<KitchenScreen> {
                         var orders = snapshot.data!.docs;
 
                         // Filter out 'delivered' and 'cancelled' orders
-                        orders = orders
-                            .where((order) =>
-                                order['orderStatus'] != 'delivered' &&
-                                order['orderStatus'] != 'cancelled')
-                            .toList();
+                        orders = orders.where((order) => order['orderStatus'] != 'delivered' && order['orderStatus'] != 'cancelled').toList();
+
+                        // **Apply filters based on the toggles**
+                        if (!showTableOrders) {
+                          orders = orders.where((order) => order['orderType'] != 'table').toList();
+                        }
+                        if (!showTakeawayOrders) {
+                          orders = orders.where((order) => order['orderType'] != 'takeaway').toList();
+                        }
 
                         if (groupByItem) {
                           // Grouping Logic
-                          var ordersByItemId =
-                              <int, List<QueryDocumentSnapshot>>{};
+                          var ordersByItemId = <int, List<QueryDocumentSnapshot>>{};
                           for (var order in orders) {
                             int itemId = order['itemId'];
                             if (!ordersByItemId.containsKey(itemId)) {
@@ -199,26 +225,20 @@ class _KitchenScreenState extends State<KitchenScreen> {
                               var entry = groupedOrders[index];
                               var itemId = entry.key;
                               var ordersList = entry.value;
-                              double totalPortions = ordersList.fold(
-                                  0.0,
+                              num totalPortions = ordersList.fold(
+                                  0,
                                   (sum, order) =>
-                                      sum +
-                                      (order['orderPortion'] as num)
-                                          .toDouble());
+                                      sum + (order['orderPortion'] as num));
                               var selectedItem = items?.firstWhere(
-                                  (item) =>
-                                      (item.data() as Map<String, dynamic>)[
-                                          'itemId'] ==
-                                      itemId);
+                                  (item) => (item.data() as Map<String, dynamic>)['itemId'] == itemId);
                               String itemName = selectedItem != null
-                                  ? (selectedItem.data()
-                                      as Map<String, dynamic>)['itemName']
+                                  ? (selectedItem.data() as Map<String, dynamic>)['itemName']
                                   : 'Unknown';
 
                               return GroupedOrderCard(
                                 itemId: itemId.toString(),
                                 itemName: itemName,
-                                totalPortions: totalPortions,
+                                totalPortions: totalPortions.toInt(), // Convert to int
                                 orders: ordersList,
                                 items: items,
                               );
@@ -226,20 +246,16 @@ class _KitchenScreenState extends State<KitchenScreen> {
                           );
                         } else {
                           // Individual Orders Logic
-                          // Sort orders by orderTime for table orders and deliveryTime for takeaway orders
                           orders.sort((a, b) {
                             var orderTypeA = a['orderType'];
                             var orderTypeB = b['orderType'];
-                            var timeA = orderTypeA == 'table'
-                                ? a['orderTime']
-                                : a['deliveryTime'];
-                            var timeB = orderTypeB == 'table'
-                                ? b['orderTime']
-                                : b['deliveryTime'];
+                            var timeA = orderTypeA == 'table' ? a['orderTime'] : a['deliveryTime'];
+                            var timeB = orderTypeB == 'table' ? b['orderTime'] : b['deliveryTime'];
+
                             if (timeA == null || timeA == "" || timeB == null || timeB == "") {
                               return 0;
                             }
-                            return timeA.compareTo(timeB);
+                            return (timeA).compareTo(timeB);
                           });
 
                           return ListView.builder(
@@ -464,7 +480,7 @@ class _KitchenScreenState extends State<KitchenScreen> {
 class GroupedOrderCard extends StatefulWidget {
   final String itemId;
   final String itemName;
-  final double totalPortions;
+  final int totalPortions;
   final List<QueryDocumentSnapshot> orders;
   final List<QueryDocumentSnapshot>? items;
 
@@ -621,7 +637,7 @@ class OrderCard extends StatelessWidget {
         : 'Unknown';
     String orderTypeString = order['orderType'] == 'takeaway'
         ? '${order['takeawayName']}'
-        : 'Table ${order['tableId']}';
+        : '${order['tableId']}';
     String orderTimeString = 'Unknown Time';
     if (order['orderType'] == 'table') {
       if (orderTime != null) {
@@ -634,7 +650,7 @@ class OrderCard extends StatelessWidget {
             'Delivery Time: ${deliveryTime.toDate().toString().split('.')[0]}';
       }
     }
-    double orderPortion = order['orderPortion'];
+    num orderPortion = order['orderPortion'];
     String orderPortionText = orderPortion == orderPortion.toInt()
         ? orderPortion.toInt().toString()
         : orderPortion.toStringAsFixed(1);
@@ -759,3 +775,4 @@ class OrderCard extends StatelessWidget {
     }
   }
 }
+

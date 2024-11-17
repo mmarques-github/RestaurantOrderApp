@@ -21,7 +21,7 @@ class _OrderDialogState extends State<OrderDialog> {
   String tableId = '';
   String orderType = 'table';
   String orderDetails = '';
-  Map<String, double> itemPortions = {}; // Use String for itemId and int for portions
+  Map<String, int> itemPortions = {}; // Use String for itemId and int for portions
   DateTime? deliveryDate;
   TimeOfDay? deliveryTime;
   String searchQuery = '';
@@ -342,7 +342,7 @@ class _OrderDialogState extends State<OrderDialog> {
                           menuItem.data() as Map<String, dynamic>;
                       var itemId = menuItem.id;
                       var itemName = menuItemData['itemName'] ?? 'Unknown';
-                      var currentPortion = itemPortions[itemId] ?? 0.0;
+                      var currentPortion = itemPortions[itemId] ?? 0;
 
                       return ListTile(
                         title: Text(itemName),
@@ -353,13 +353,9 @@ class _OrderDialogState extends State<OrderDialog> {
                               icon: Icon(Icons.remove),
                               onPressed: () {
                                 setState(() {
-                                  if (currentPortion > 0.0) {
-                                    // Decrease the portion by 0.5 if Daily, Fixed or Sunday menu else by 1
-                                    itemMenuFilter == 'daily' ||
-                                            itemMenuFilter == 'fixed' ||
-                                            itemMenuFilter == 'sunday'
-                                        ? itemPortions[itemId] = currentPortion - 0.5
-                                        : itemPortions[itemId] = currentPortion - 1;
+                                  if (currentPortion > 0) {
+                                    // Decrease the portion by 1
+                                    itemPortions[itemId] = currentPortion - 1;
                                   }
                                 });
                               },
@@ -369,12 +365,8 @@ class _OrderDialogState extends State<OrderDialog> {
                               icon: Icon(Icons.add),
                               onPressed: () {
                                 setState(() {
-                                  // Decrease the portion by 0.5 if Daily, Fixed or Sunday menu else by 1
-                                  itemMenuFilter == 'daily' ||
-                                          itemMenuFilter == 'fixed' ||
-                                          itemMenuFilter == 'sunday'
-                                      ? itemPortions[itemId] = currentPortion + 0.5
-                                      : itemPortions[itemId] = currentPortion + 1;
+                                  // Increase the portion by 1
+                                  itemPortions[itemId] = currentPortion + 1;
                                 });
                               },
                             ),
@@ -565,8 +557,8 @@ class _OrderDialogState extends State<OrderDialog> {
 
                         // Add the orders to the database
                         for (var itemId in itemPortions.keys) {
-                          double portion = itemPortions[itemId]!;
-                          if (portion > 0.0) {
+                          int portion = itemPortions[itemId]!;
+                          if (portion > 0) {
                             // Fetch the item document to get the numeric itemId and itemName
                             DocumentSnapshot itemDoc = await FirebaseFirestore.instance
                                 .collection('items')

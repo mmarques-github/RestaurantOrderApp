@@ -128,19 +128,6 @@ class _WaiterScreenState extends State<WaiterScreen> {
           children: [
             _buildPrefixFilters(), // Add the filter buttons
             SizedBox(height: 16),
-            // Search Field (Optional)
-            TextField(
-              decoration: InputDecoration(
-                labelText: 'Search Tables',
-                prefixIcon: Icon(Icons.search),
-              ),
-              onChanged: (value) {
-                setState(() {
-                  searchQuery = value.toLowerCase();
-                });
-              },
-            ),
-            SizedBox(height: 16),
             // Expanded Widget to Display Tables and Orders
             Expanded(
               child: StreamBuilder<QuerySnapshot>(
@@ -281,13 +268,13 @@ class _WaiterScreenState extends State<WaiterScreen> {
                 },
               ),
             ),
-            SizedBox(height: 16),
+            SizedBox(height: 2),
             // Add Order Button
             ElevatedButton(
               onPressed: _openOrderDialog,
               child: Text('Add Order'),
             ),
-            SizedBox(height: 16),
+            SizedBox(height: 2),
             // Add Item Button
             ElevatedButton(
               onPressed: () {
@@ -306,7 +293,7 @@ class _WaiterScreenState extends State<WaiterScreen> {
               },
               child: Text('Add Item'),
             ),
-            SizedBox(height: 16), 
+            SizedBox(height: 2), 
             // Add Table Button
             ElevatedButton(
               onPressed: () {

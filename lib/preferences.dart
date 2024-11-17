@@ -34,4 +34,34 @@ class Preferences {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getString('selectedItemType') ?? 'Menu'; // Default value
   }
+
+  static Future<bool> getShowTableOrders() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getBool('showTableOrders') ?? true;
+  }
+
+  static Future<void> setShowTableOrders(bool value) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('showTableOrders', value);
+  }
+
+  static Future<bool> getShowTakeawayOrders() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getBool('showTakeawayOrders') ?? true;
+  }
+
+  static Future<void> setShowTakeawayOrders(bool value) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('showTakeawayOrders', value);
+  }
+
+  static Future<bool> getGroupByItem() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getBool('groupByItem') ?? false;
+  }
+
+  static Future<void> setGroupByItem(bool value) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('groupByItem', value);
+  }
 }
