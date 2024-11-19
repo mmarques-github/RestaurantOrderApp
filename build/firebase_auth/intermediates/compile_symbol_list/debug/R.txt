@@ -109,6 +109,9 @@ int drawable common_google_signin_btn_text_light_normal 0x0
 int drawable common_google_signin_btn_text_light_normal_background 0x0
 int drawable googleg_disabled_color_18 0x0
 int drawable googleg_standard_color_18 0x0
+int drawable ic_other_sign_in 0x0
+int drawable ic_passkey 0x0
+int drawable ic_password 0x0
 int drawable notification_action_background 0x0
 int drawable notification_bg 0x0
 int drawable notification_bg_low 0x0
@@ -229,6 +232,8 @@ int layout notification_template_icon_group 0x0
 int layout notification_template_part_chronometer 0x0
 int layout notification_template_part_time 0x0
 int raw firebase_common_keep 0x0
+int string android_credentials_TYPE_PASSWORD_CREDENTIAL 0x0
+int string androidx_credentials_TYPE_PUBLIC_KEY_CREDENTIAL 0x0
 int string common_google_play_services_enable_button 0x0
 int string common_google_play_services_enable_text 0x0
 int string common_google_play_services_enable_title 0x0
@@ -257,6 +262,7 @@ int style TextAppearance_Compat_Notification_Info 0x0
 int style TextAppearance_Compat_Notification_Line2 0x0
 int style TextAppearance_Compat_Notification_Time 0x0
 int style TextAppearance_Compat_Notification_Title 0x0
+int style Theme_Hidden 0x0
 int style Widget_Compat_NotificationActionContainer 0x0
 int style Widget_Compat_NotificationActionText 0x0
 int style Widget_Support_CoordinatorLayout 0x0

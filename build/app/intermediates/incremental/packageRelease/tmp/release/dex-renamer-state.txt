@@ -1,4 +1,0 @@
-#Thu Nov 07 22:05:59 CET 2024
-base.0=/home/marcelo/github_repos/Restaurant_app/restaurant_app_new/build/app/intermediates/dex/release/minifyReleaseWithR8/classes.dex
-path.0=classes.dex
-renamed.0=classes.dex

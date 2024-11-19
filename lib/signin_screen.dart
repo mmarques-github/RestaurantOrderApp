@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:crypto/crypto.dart';
+import 'dart:convert'; // for utf8 encoding
 import 'auth_service.dart';
 import 'waiter_screen.dart';
 import 'kitchen_screen.dart';
@@ -13,6 +15,12 @@ class _SignInScreenState extends State<SignInScreen> {
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final AuthService _authService = AuthService();
+
+  String hashPassword(String password) {
+    final bytes = utf8.encode(password); // Convert password to bytes
+    final hash = sha256.convert(bytes); // Create SHA-256 hash
+    return hash.toString(); // Convert hash to string
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,8 +48,12 @@ class _SignInScreenState extends State<SignInScreen> {
                 String password = passwordController.text.trim();
 
                 if (username.isNotEmpty && password.isNotEmpty) {
-                  // Sign in and get user info
-                  bool result = await _authService.signIn(username, password);
+                  // Hash the password before sending
+                  String hashedPassword = hashPassword(password);
+                  print('Hashed password: $hashedPassword');
+
+                  // Sign in with hashed password
+                  bool result = await _authService.signIn(username, hashedPassword);
                   if (result) {
                     print('Sign in successful');
 

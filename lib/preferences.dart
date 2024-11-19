@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class Preferences {
   static const String _keySelectedMenuType = 'selectedMenuType';
   static const String _keyUsername = 'username'; // Add this line
+  static const String _fontSizeKey = 'fontSize';
 
   static Future<void> setSelectedMenuType(String menuType) async {
     final prefs = await SharedPreferences.getInstance();
@@ -63,5 +64,25 @@ class Preferences {
   static Future<void> setGroupByItem(bool value) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool('groupByItem', value);
+  }
+
+  static Future<bool> getShowTodayOrders() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getBool('showTodayOrders') ?? true;
+  }
+
+  static Future<void> setShowTodayOrders(bool value) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('showTodayOrders', value);
+  }
+
+  static Future<void> setFontSize(double size) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setDouble(_fontSizeKey, size);
+  }
+
+  static Future<double> getFontSize() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getDouble(_fontSizeKey) ?? 14.0;
   }
 }

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.restaurant_app_new.app-mergeDebugResources-27:/values-v24/values-v24.xml",
+            "outputFile": "com.example.restaurant_app_new.app-mergeDebugResources-30:/values-v24/values-v24.xml",
             "map": [
                 {
                     "source": "/home/marcelo/.gradle/caches/transforms-3/48503fea57250778149ff167893de7ba/transformed/appcompat-1.4.2/res/values-v24/values-v24.xml",

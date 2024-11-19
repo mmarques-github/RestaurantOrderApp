@@ -337,21 +337,51 @@ class _TableDialogState extends State<TableDialog> {
         ),
       ),
       actions: [
-        ElevatedButton(
-          onPressed: _clearTable,
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.red.shade100, // Red background for the clear table button
+        ConstrainedBox(
+          constraints: BoxConstraints(
+            maxWidth: isSmallScreen ? deviceWidth * 0.35 : deviceWidth * 0.15, // Wider on small screens
+            minHeight: isSmallScreen ? 48 : 36, // Taller on small screens
           ),
-          child: Text(
-            'Clear Table',
-            style: TextStyle(fontSize: buttonFontSize),
+          child: ElevatedButton(
+            onPressed: _clearTable,
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.red.shade100,
+              padding: EdgeInsets.symmetric(
+                horizontal: isSmallScreen ? 16 : 12,
+                vertical: isSmallScreen ? 12 : 8,
+              ),
+            ),
+            child: Text(
+              'Clear Table',
+              style: TextStyle(
+                fontSize: isSmallScreen ? buttonFontSize * 1.2 : buttonFontSize,
+                fontWeight: isSmallScreen ? FontWeight.bold : FontWeight.normal,
+              ),
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
         ),
-        ElevatedButton(
-          onPressed: _openOrderDialog,
-          child: Text(
-            'Add Order',
-            style: TextStyle(fontSize: buttonFontSize),
+        ConstrainedBox(
+          constraints: BoxConstraints(
+            maxWidth: isSmallScreen ? deviceWidth * 0.35 : deviceWidth * 0.15, // Wider on small screens
+            minHeight: isSmallScreen ? 48 : 36, // Taller on small screens
+          ),
+          child: ElevatedButton(
+            onPressed: _openOrderDialog,
+            style: ElevatedButton.styleFrom(
+              padding: EdgeInsets.symmetric(
+                horizontal: isSmallScreen ? 16 : 12,
+                vertical: isSmallScreen ? 12 : 8,
+              ),
+            ),
+            child: Text(
+              'Add Order',
+              style: TextStyle(
+                fontSize: isSmallScreen ? buttonFontSize * 1.2 : buttonFontSize,
+                fontWeight: isSmallScreen ? FontWeight.bold : FontWeight.normal,
+              ),
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
         ),
       ],

@@ -5,7 +5,7 @@
 5    android:versionName="1.0.0" >
 6
 7    <uses-sdk
-8        android:minSdkVersion="21"
+8        android:minSdkVersion="23"
 9        android:targetSdkVersion="34" />
 10    <!--
 11         The INTERNET permission is required for development. Specifically,
@@ -37,8 +37,8 @@
 29    </queries>
 30
 31    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-31-->[com.google.firebase:firebase-auth:22.3.1] /home/marcelo/.gradle/caches/transforms-3/22b73601ec23846af8d90aa927a7ecf6/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:26:5-79
-31-->[com.google.firebase:firebase-auth:22.3.1] /home/marcelo/.gradle/caches/transforms-3/22b73601ec23846af8d90aa927a7ecf6/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:26:22-76
+31-->[com.google.firebase:firebase-auth:23.0.0] /home/marcelo/.gradle/caches/transforms-3/9cca69bc2a3cda63922adb371828b58b/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:26:5-79
+31-->[com.google.firebase:firebase-auth:23.0.0] /home/marcelo/.gradle/caches/transforms-3/9cca69bc2a3cda63922adb371828b58b/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:26:22-76
 32    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
 32-->[com.google.android.recaptcha:recaptcha:18.4.0] /home/marcelo/.gradle/caches/transforms-3/bfa7e487ada9a2c293b34333c2be31be/transformed/jetified-recaptcha-18.4.0/AndroidManifest.xml:9:5-98
 32-->[com.google.android.recaptcha:recaptcha:18.4.0] /home/marcelo/.gradle/caches/transforms-3/bfa7e487ada9a2c293b34333c2be31be/transformed/jetified-recaptcha-18.4.0/AndroidManifest.xml:9:22-95
@@ -88,243 +88,301 @@
 56        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 56-->[androidx.core:core:1.7.0] /home/marcelo/.gradle/caches/transforms-3/b982785381abe549e569d09ac8601293/transformed/core-1.7.0/AndroidManifest.xml:24:18-86
 57        android:debuggable="true"
-58        android:icon="@mipmap/ic_launcher"
-59        android:label="restaurant_app_new" >
-60        <activity
-61            android:name="com.example.restaurant_app_new.MainActivity"
-62            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
-63            android:exported="true"
-64            android:hardwareAccelerated="true"
-65            android:launchMode="singleTop"
-66            android:taskAffinity=""
-67            android:theme="@style/LaunchTheme"
-68            android:windowSoftInputMode="adjustResize" >
-69
-70            <!--
-71                 Specifies an Android theme to apply to this Activity as soon as
-72                 the Android process has started. This theme is visible to the user
-73                 while the Flutter UI initializes. After that, this theme continues
-74                 to determine the Window background behind the Flutter UI.
-75            -->
-76            <meta-data
-77                android:name="io.flutter.embedding.android.NormalTheme"
-78                android:resource="@style/NormalTheme" />
-79
-80            <intent-filter>
-81                <action android:name="android.intent.action.MAIN" />
-82
-83                <category android:name="android.intent.category.LAUNCHER" />
-84            </intent-filter>
-85        </activity>
-86        <!--
-87             Don't delete the meta-data below.
-88             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
-89        -->
-90        <meta-data
-91            android:name="flutterEmbedding"
-92            android:value="2" />
-93
-94        <service
-94-->[:cloud_firestore] /home/marcelo/github_repos/RestaurantOrderApp/build/cloud_firestore/intermediates/merged_manifest/debug/AndroidManifest.xml:10:9-14:19
-95            android:name="com.google.firebase.components.ComponentDiscoveryService"
-95-->[:cloud_firestore] /home/marcelo/github_repos/RestaurantOrderApp/build/cloud_firestore/intermediates/merged_manifest/debug/AndroidManifest.xml:10:18-89
-96            android:directBootAware="true"
-96-->[com.google.firebase:firebase-common:20.4.3] /home/marcelo/.gradle/caches/transforms-3/a33d41bcf3a2223df37a9b2a9c9d4c10/transformed/jetified-firebase-common-20.4.3/AndroidManifest.xml:32:13-43
-97            android:exported="false" >
-97-->[com.google.firebase:firebase-auth:22.3.1] /home/marcelo/.gradle/caches/transforms-3/22b73601ec23846af8d90aa927a7ecf6/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:68:13-37
-98            <meta-data
-98-->[:cloud_firestore] /home/marcelo/github_repos/RestaurantOrderApp/build/cloud_firestore/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-13:85
-99                android:name="com.google.firebase.components:io.flutter.plugins.firebase.firestore.FlutterFirebaseFirestoreRegistrar"
-99-->[:cloud_firestore] /home/marcelo/github_repos/RestaurantOrderApp/build/cloud_firestore/intermediates/merged_manifest/debug/AndroidManifest.xml:12:17-134
-100                android:value="com.google.firebase.components.ComponentRegistrar" />
-100-->[:cloud_firestore] /home/marcelo/github_repos/RestaurantOrderApp/build/cloud_firestore/intermediates/merged_manifest/debug/AndroidManifest.xml:13:17-82
-101            <meta-data
-101-->[:firebase_auth] /home/marcelo/github_repos/RestaurantOrderApp/build/firebase_auth/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-13:85
-102                android:name="com.google.firebase.components:io.flutter.plugins.firebase.auth.FlutterFirebaseAuthRegistrar"
-102-->[:firebase_auth] /home/marcelo/github_repos/RestaurantOrderApp/build/firebase_auth/intermediates/merged_manifest/debug/AndroidManifest.xml:12:17-124
-103                android:value="com.google.firebase.components.ComponentRegistrar" />
-103-->[:firebase_auth] /home/marcelo/github_repos/RestaurantOrderApp/build/firebase_auth/intermediates/merged_manifest/debug/AndroidManifest.xml:13:17-82
-104            <meta-data
-104-->[:firebase_core] /home/marcelo/github_repos/RestaurantOrderApp/build/firebase_core/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-13:85
-105                android:name="com.google.firebase.components:io.flutter.plugins.firebase.core.FlutterFirebaseCoreRegistrar"
-105-->[:firebase_core] /home/marcelo/github_repos/RestaurantOrderApp/build/firebase_core/intermediates/merged_manifest/debug/AndroidManifest.xml:12:17-124
-106                android:value="com.google.firebase.components.ComponentRegistrar" />
-106-->[:firebase_core] /home/marcelo/github_repos/RestaurantOrderApp/build/firebase_core/intermediates/merged_manifest/debug/AndroidManifest.xml:13:17-82
-107            <meta-data
-107-->[com.google.firebase:firebase-auth:22.3.1] /home/marcelo/.gradle/caches/transforms-3/22b73601ec23846af8d90aa927a7ecf6/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:69:13-71:85
-108                android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
-108-->[com.google.firebase:firebase-auth:22.3.1] /home/marcelo/.gradle/caches/transforms-3/22b73601ec23846af8d90aa927a7ecf6/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:70:17-109
-109                android:value="com.google.firebase.components.ComponentRegistrar" />
-109-->[com.google.firebase:firebase-auth:22.3.1] /home/marcelo/.gradle/caches/transforms-3/22b73601ec23846af8d90aa927a7ecf6/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:71:17-82
-110            <meta-data
-110-->[com.google.firebase:firebase-firestore:24.11.0] /home/marcelo/.gradle/caches/transforms-3/be5f8caa7690f9992e6725c6f4dc1e2b/transformed/jetified-firebase-firestore-24.11.0/AndroidManifest.xml:17:13-19:85
-111                android:name="com.google.firebase.components:com.google.firebase.firestore.FirebaseFirestoreKtxRegistrar"
-111-->[com.google.firebase:firebase-firestore:24.11.0] /home/marcelo/.gradle/caches/transforms-3/be5f8caa7690f9992e6725c6f4dc1e2b/transformed/jetified-firebase-firestore-24.11.0/AndroidManifest.xml:18:17-122
-112                android:value="com.google.firebase.components.ComponentRegistrar" />
-112-->[com.google.firebase:firebase-firestore:24.11.0] /home/marcelo/.gradle/caches/transforms-3/be5f8caa7690f9992e6725c6f4dc1e2b/transformed/jetified-firebase-firestore-24.11.0/AndroidManifest.xml:19:17-82
-113            <meta-data
-113-->[com.google.firebase:firebase-firestore:24.11.0] /home/marcelo/.gradle/caches/transforms-3/be5f8caa7690f9992e6725c6f4dc1e2b/transformed/jetified-firebase-firestore-24.11.0/AndroidManifest.xml:20:13-22:85
-114                android:name="com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar"
-114-->[com.google.firebase:firebase-firestore:24.11.0] /home/marcelo/.gradle/caches/transforms-3/be5f8caa7690f9992e6725c6f4dc1e2b/transformed/jetified-firebase-firestore-24.11.0/AndroidManifest.xml:21:17-111
-115                android:value="com.google.firebase.components.ComponentRegistrar" />
-115-->[com.google.firebase:firebase-firestore:24.11.0] /home/marcelo/.gradle/caches/transforms-3/be5f8caa7690f9992e6725c6f4dc1e2b/transformed/jetified-firebase-firestore-24.11.0/AndroidManifest.xml:22:17-82
-116            <meta-data
-116-->[com.google.firebase:firebase-common-ktx:20.4.3] /home/marcelo/.gradle/caches/transforms-3/2119d9d7f864ab69861785e36e14af22/transformed/jetified-firebase-common-ktx-20.4.3/AndroidManifest.xml:12:13-14:85
-117                android:name="com.google.firebase.components:com.google.firebase.ktx.FirebaseCommonLegacyRegistrar"
-117-->[com.google.firebase:firebase-common-ktx:20.4.3] /home/marcelo/.gradle/caches/transforms-3/2119d9d7f864ab69861785e36e14af22/transformed/jetified-firebase-common-ktx-20.4.3/AndroidManifest.xml:13:17-116
-118                android:value="com.google.firebase.components.ComponentRegistrar" />
-118-->[com.google.firebase:firebase-common-ktx:20.4.3] /home/marcelo/.gradle/caches/transforms-3/2119d9d7f864ab69861785e36e14af22/transformed/jetified-firebase-common-ktx-20.4.3/AndroidManifest.xml:14:17-82
-119            <meta-data
-119-->[com.google.firebase:firebase-common:20.4.3] /home/marcelo/.gradle/caches/transforms-3/a33d41bcf3a2223df37a9b2a9c9d4c10/transformed/jetified-firebase-common-20.4.3/AndroidManifest.xml:35:13-37:85
-120                android:name="com.google.firebase.components:com.google.firebase.FirebaseCommonKtxRegistrar"
-120-->[com.google.firebase:firebase-common:20.4.3] /home/marcelo/.gradle/caches/transforms-3/a33d41bcf3a2223df37a9b2a9c9d4c10/transformed/jetified-firebase-common-20.4.3/AndroidManifest.xml:36:17-109
-121                android:value="com.google.firebase.components.ComponentRegistrar" />
-121-->[com.google.firebase:firebase-common:20.4.3] /home/marcelo/.gradle/caches/transforms-3/a33d41bcf3a2223df37a9b2a9c9d4c10/transformed/jetified-firebase-common-20.4.3/AndroidManifest.xml:37:17-82
-122        </service>
-123
-124        <activity
-124-->[com.google.firebase:firebase-auth:22.3.1] /home/marcelo/.gradle/caches/transforms-3/22b73601ec23846af8d90aa927a7ecf6/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:29:9-46:20
-125            android:name="com.google.firebase.auth.internal.GenericIdpActivity"
-125-->[com.google.firebase:firebase-auth:22.3.1] /home/marcelo/.gradle/caches/transforms-3/22b73601ec23846af8d90aa927a7ecf6/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:30:13-80
-126            android:excludeFromRecents="true"
-126-->[com.google.firebase:firebase-auth:22.3.1] /home/marcelo/.gradle/caches/transforms-3/22b73601ec23846af8d90aa927a7ecf6/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:31:13-46
-127            android:exported="true"
-127-->[com.google.firebase:firebase-auth:22.3.1] /home/marcelo/.gradle/caches/transforms-3/22b73601ec23846af8d90aa927a7ecf6/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:32:13-36
-128            android:launchMode="singleTask"
-128-->[com.google.firebase:firebase-auth:22.3.1] /home/marcelo/.gradle/caches/transforms-3/22b73601ec23846af8d90aa927a7ecf6/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:33:13-44
-129            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-129-->[com.google.firebase:firebase-auth:22.3.1] /home/marcelo/.gradle/caches/transforms-3/22b73601ec23846af8d90aa927a7ecf6/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:34:13-72
-130            <intent-filter>
-130-->[com.google.firebase:firebase-auth:22.3.1] /home/marcelo/.gradle/caches/transforms-3/22b73601ec23846af8d90aa927a7ecf6/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:35:13-45:29
-131                <action android:name="android.intent.action.VIEW" />
-131-->[com.google.firebase:firebase-auth:22.3.1] /home/marcelo/.gradle/caches/transforms-3/22b73601ec23846af8d90aa927a7ecf6/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:36:17-69
-131-->[com.google.firebase:firebase-auth:22.3.1] /home/marcelo/.gradle/caches/transforms-3/22b73601ec23846af8d90aa927a7ecf6/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:36:25-66
-132
-133                <category android:name="android.intent.category.DEFAULT" />
-133-->[com.google.firebase:firebase-auth:22.3.1] /home/marcelo/.gradle/caches/transforms-3/22b73601ec23846af8d90aa927a7ecf6/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:38:17-76
-133-->[com.google.firebase:firebase-auth:22.3.1] /home/marcelo/.gradle/caches/transforms-3/22b73601ec23846af8d90aa927a7ecf6/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:38:27-73
-134                <category android:name="android.intent.category.BROWSABLE" />
-134-->[com.google.firebase:firebase-auth:22.3.1] /home/marcelo/.gradle/caches/transforms-3/22b73601ec23846af8d90aa927a7ecf6/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:39:17-78
-134-->[com.google.firebase:firebase-auth:22.3.1] /home/marcelo/.gradle/caches/transforms-3/22b73601ec23846af8d90aa927a7ecf6/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:39:27-75
-135
-136                <data
-136-->/home/marcelo/github_repos/RestaurantOrderApp/android/app/src/main/AndroidManifest.xml:42:13-50
-137                    android:host="firebase.auth"
-138                    android:path="/"
-139                    android:scheme="genericidp" />
-140            </intent-filter>
-141        </activity>
-142        <activity
-142-->[com.google.firebase:firebase-auth:22.3.1] /home/marcelo/.gradle/caches/transforms-3/22b73601ec23846af8d90aa927a7ecf6/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:47:9-64:20
-143            android:name="com.google.firebase.auth.internal.RecaptchaActivity"
-143-->[com.google.firebase:firebase-auth:22.3.1] /home/marcelo/.gradle/caches/transforms-3/22b73601ec23846af8d90aa927a7ecf6/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:48:13-79
-144            android:excludeFromRecents="true"
-144-->[com.google.firebase:firebase-auth:22.3.1] /home/marcelo/.gradle/caches/transforms-3/22b73601ec23846af8d90aa927a7ecf6/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:49:13-46
-145            android:exported="true"
-145-->[com.google.firebase:firebase-auth:22.3.1] /home/marcelo/.gradle/caches/transforms-3/22b73601ec23846af8d90aa927a7ecf6/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:50:13-36
-146            android:launchMode="singleTask"
-146-->[com.google.firebase:firebase-auth:22.3.1] /home/marcelo/.gradle/caches/transforms-3/22b73601ec23846af8d90aa927a7ecf6/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:51:13-44
-147            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-147-->[com.google.firebase:firebase-auth:22.3.1] /home/marcelo/.gradle/caches/transforms-3/22b73601ec23846af8d90aa927a7ecf6/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:52:13-72
-148            <intent-filter>
-148-->[com.google.firebase:firebase-auth:22.3.1] /home/marcelo/.gradle/caches/transforms-3/22b73601ec23846af8d90aa927a7ecf6/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:53:13-63:29
-149                <action android:name="android.intent.action.VIEW" />
-149-->[com.google.firebase:firebase-auth:22.3.1] /home/marcelo/.gradle/caches/transforms-3/22b73601ec23846af8d90aa927a7ecf6/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:36:17-69
-149-->[com.google.firebase:firebase-auth:22.3.1] /home/marcelo/.gradle/caches/transforms-3/22b73601ec23846af8d90aa927a7ecf6/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:36:25-66
-150
-151                <category android:name="android.intent.category.DEFAULT" />
-151-->[com.google.firebase:firebase-auth:22.3.1] /home/marcelo/.gradle/caches/transforms-3/22b73601ec23846af8d90aa927a7ecf6/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:38:17-76
-151-->[com.google.firebase:firebase-auth:22.3.1] /home/marcelo/.gradle/caches/transforms-3/22b73601ec23846af8d90aa927a7ecf6/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:38:27-73
-152                <category android:name="android.intent.category.BROWSABLE" />
-152-->[com.google.firebase:firebase-auth:22.3.1] /home/marcelo/.gradle/caches/transforms-3/22b73601ec23846af8d90aa927a7ecf6/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:39:17-78
-152-->[com.google.firebase:firebase-auth:22.3.1] /home/marcelo/.gradle/caches/transforms-3/22b73601ec23846af8d90aa927a7ecf6/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:39:27-75
-153
-154                <data
-154-->/home/marcelo/github_repos/RestaurantOrderApp/android/app/src/main/AndroidManifest.xml:42:13-50
-155                    android:host="firebase.auth"
-156                    android:path="/"
-157                    android:scheme="recaptcha" />
-158            </intent-filter>
-159        </activity>
-160
-161        <provider
-161-->[com.google.firebase:firebase-common:20.4.3] /home/marcelo/.gradle/caches/transforms-3/a33d41bcf3a2223df37a9b2a9c9d4c10/transformed/jetified-firebase-common-20.4.3/AndroidManifest.xml:23:9-28:39
-162            android:name="com.google.firebase.provider.FirebaseInitProvider"
-162-->[com.google.firebase:firebase-common:20.4.3] /home/marcelo/.gradle/caches/transforms-3/a33d41bcf3a2223df37a9b2a9c9d4c10/transformed/jetified-firebase-common-20.4.3/AndroidManifest.xml:24:13-77
-163            android:authorities="com.example.restaurant_app_new.firebaseinitprovider"
-163-->[com.google.firebase:firebase-common:20.4.3] /home/marcelo/.gradle/caches/transforms-3/a33d41bcf3a2223df37a9b2a9c9d4c10/transformed/jetified-firebase-common-20.4.3/AndroidManifest.xml:25:13-72
-164            android:directBootAware="true"
-164-->[com.google.firebase:firebase-common:20.4.3] /home/marcelo/.gradle/caches/transforms-3/a33d41bcf3a2223df37a9b2a9c9d4c10/transformed/jetified-firebase-common-20.4.3/AndroidManifest.xml:26:13-43
-165            android:exported="false"
-165-->[com.google.firebase:firebase-common:20.4.3] /home/marcelo/.gradle/caches/transforms-3/a33d41bcf3a2223df37a9b2a9c9d4c10/transformed/jetified-firebase-common-20.4.3/AndroidManifest.xml:27:13-37
-166            android:initOrder="100" />
-166-->[com.google.firebase:firebase-common:20.4.3] /home/marcelo/.gradle/caches/transforms-3/a33d41bcf3a2223df37a9b2a9c9d4c10/transformed/jetified-firebase-common-20.4.3/AndroidManifest.xml:28:13-36
-167
-168        <uses-library
-168-->[androidx.window:window:1.0.0-beta04] /home/marcelo/.gradle/caches/transforms-3/1f063c91a907141588f51f373b1f5f4a/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:25:9-27:40
-169            android:name="androidx.window.extensions"
-169-->[androidx.window:window:1.0.0-beta04] /home/marcelo/.gradle/caches/transforms-3/1f063c91a907141588f51f373b1f5f4a/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:26:13-54
-170            android:required="false" />
-170-->[androidx.window:window:1.0.0-beta04] /home/marcelo/.gradle/caches/transforms-3/1f063c91a907141588f51f373b1f5f4a/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:27:13-37
-171        <uses-library
-171-->[androidx.window:window:1.0.0-beta04] /home/marcelo/.gradle/caches/transforms-3/1f063c91a907141588f51f373b1f5f4a/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:28:9-30:40
-172            android:name="androidx.window.sidecar"
-172-->[androidx.window:window:1.0.0-beta04] /home/marcelo/.gradle/caches/transforms-3/1f063c91a907141588f51f373b1f5f4a/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:29:13-51
-173            android:required="false" />
-173-->[androidx.window:window:1.0.0-beta04] /home/marcelo/.gradle/caches/transforms-3/1f063c91a907141588f51f373b1f5f4a/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:30:13-37
-174
-175        <activity
-175-->[com.google.android.gms:play-services-base:18.0.1] /home/marcelo/.gradle/caches/transforms-3/83bd7fcc26403a15e00188c3570da0fa/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:9-22:45
-176            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-176-->[com.google.android.gms:play-services-base:18.0.1] /home/marcelo/.gradle/caches/transforms-3/83bd7fcc26403a15e00188c3570da0fa/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:19-85
-177            android:exported="false"
-177-->[com.google.android.gms:play-services-base:18.0.1] /home/marcelo/.gradle/caches/transforms-3/83bd7fcc26403a15e00188c3570da0fa/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:22:19-43
-178            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-178-->[com.google.android.gms:play-services-base:18.0.1] /home/marcelo/.gradle/caches/transforms-3/83bd7fcc26403a15e00188c3570da0fa/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:21:19-78
+58        android:extractNativeLibs="false"
+59        android:icon="@mipmap/ic_launcher"
+60        android:label="restaurant_app_new" >
+61        <activity
+62            android:name="com.example.restaurant_app_new.MainActivity"
+63            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+64            android:exported="true"
+65            android:hardwareAccelerated="true"
+66            android:launchMode="singleTop"
+67            android:taskAffinity=""
+68            android:theme="@style/LaunchTheme"
+69            android:windowSoftInputMode="adjustResize" >
+70
+71            <!--
+72                 Specifies an Android theme to apply to this Activity as soon as
+73                 the Android process has started. This theme is visible to the user
+74                 while the Flutter UI initializes. After that, this theme continues
+75                 to determine the Window background behind the Flutter UI.
+76            -->
+77            <meta-data
+78                android:name="io.flutter.embedding.android.NormalTheme"
+79                android:resource="@style/NormalTheme" />
+80
+81            <intent-filter>
+82                <action android:name="android.intent.action.MAIN" />
+83
+84                <category android:name="android.intent.category.LAUNCHER" />
+85            </intent-filter>
+86        </activity>
+87        <!--
+88             Don't delete the meta-data below.
+89             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+90        -->
+91        <meta-data
+92            android:name="flutterEmbedding"
+93            android:value="2" />
+94
+95        <service
+95-->[:cloud_firestore] /home/marcelo/github_repos/RestaurantOrderApp/build/cloud_firestore/intermediates/merged_manifest/debug/AndroidManifest.xml:10:9-14:19
+96            android:name="com.google.firebase.components.ComponentDiscoveryService"
+96-->[:cloud_firestore] /home/marcelo/github_repos/RestaurantOrderApp/build/cloud_firestore/intermediates/merged_manifest/debug/AndroidManifest.xml:10:18-89
+97            android:directBootAware="true"
+97-->[com.google.firebase:firebase-common:21.0.0] /home/marcelo/.gradle/caches/transforms-3/a1e9b7e171ebe989e7c2215846d4f6bc/transformed/jetified-firebase-common-21.0.0/AndroidManifest.xml:32:13-43
+98            android:exported="false" >
+98-->[com.google.firebase:firebase-auth:23.0.0] /home/marcelo/.gradle/caches/transforms-3/9cca69bc2a3cda63922adb371828b58b/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:68:13-37
+99            <meta-data
+99-->[:cloud_firestore] /home/marcelo/github_repos/RestaurantOrderApp/build/cloud_firestore/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-13:85
+100                android:name="com.google.firebase.components:io.flutter.plugins.firebase.firestore.FlutterFirebaseFirestoreRegistrar"
+100-->[:cloud_firestore] /home/marcelo/github_repos/RestaurantOrderApp/build/cloud_firestore/intermediates/merged_manifest/debug/AndroidManifest.xml:12:17-134
+101                android:value="com.google.firebase.components.ComponentRegistrar" />
+101-->[:cloud_firestore] /home/marcelo/github_repos/RestaurantOrderApp/build/cloud_firestore/intermediates/merged_manifest/debug/AndroidManifest.xml:13:17-82
+102            <meta-data
+102-->[:firebase_auth] /home/marcelo/github_repos/RestaurantOrderApp/build/firebase_auth/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-13:85
+103                android:name="com.google.firebase.components:io.flutter.plugins.firebase.auth.FlutterFirebaseAuthRegistrar"
+103-->[:firebase_auth] /home/marcelo/github_repos/RestaurantOrderApp/build/firebase_auth/intermediates/merged_manifest/debug/AndroidManifest.xml:12:17-124
+104                android:value="com.google.firebase.components.ComponentRegistrar" />
+104-->[:firebase_auth] /home/marcelo/github_repos/RestaurantOrderApp/build/firebase_auth/intermediates/merged_manifest/debug/AndroidManifest.xml:13:17-82
+105            <meta-data
+105-->[:firebase_core] /home/marcelo/github_repos/RestaurantOrderApp/build/firebase_core/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-13:85
+106                android:name="com.google.firebase.components:io.flutter.plugins.firebase.core.FlutterFirebaseCoreRegistrar"
+106-->[:firebase_core] /home/marcelo/github_repos/RestaurantOrderApp/build/firebase_core/intermediates/merged_manifest/debug/AndroidManifest.xml:12:17-124
+107                android:value="com.google.firebase.components.ComponentRegistrar" />
+107-->[:firebase_core] /home/marcelo/github_repos/RestaurantOrderApp/build/firebase_core/intermediates/merged_manifest/debug/AndroidManifest.xml:13:17-82
+108            <meta-data
+108-->[com.google.firebase:firebase-auth:23.0.0] /home/marcelo/.gradle/caches/transforms-3/9cca69bc2a3cda63922adb371828b58b/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:69:13-71:85
+109                android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
+109-->[com.google.firebase:firebase-auth:23.0.0] /home/marcelo/.gradle/caches/transforms-3/9cca69bc2a3cda63922adb371828b58b/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:70:17-109
+110                android:value="com.google.firebase.components.ComponentRegistrar" />
+110-->[com.google.firebase:firebase-auth:23.0.0] /home/marcelo/.gradle/caches/transforms-3/9cca69bc2a3cda63922adb371828b58b/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:71:17-82
+111            <meta-data
+111-->[com.google.firebase:firebase-firestore:25.0.0] /home/marcelo/.gradle/caches/transforms-3/385e60e1c81cd166a8ad3c908ae54a0f/transformed/jetified-firebase-firestore-25.0.0/AndroidManifest.xml:17:13-19:85
+112                android:name="com.google.firebase.components:com.google.firebase.firestore.FirebaseFirestoreKtxRegistrar"
+112-->[com.google.firebase:firebase-firestore:25.0.0] /home/marcelo/.gradle/caches/transforms-3/385e60e1c81cd166a8ad3c908ae54a0f/transformed/jetified-firebase-firestore-25.0.0/AndroidManifest.xml:18:17-122
+113                android:value="com.google.firebase.components.ComponentRegistrar" />
+113-->[com.google.firebase:firebase-firestore:25.0.0] /home/marcelo/.gradle/caches/transforms-3/385e60e1c81cd166a8ad3c908ae54a0f/transformed/jetified-firebase-firestore-25.0.0/AndroidManifest.xml:19:17-82
+114            <meta-data
+114-->[com.google.firebase:firebase-firestore:25.0.0] /home/marcelo/.gradle/caches/transforms-3/385e60e1c81cd166a8ad3c908ae54a0f/transformed/jetified-firebase-firestore-25.0.0/AndroidManifest.xml:20:13-22:85
+115                android:name="com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar"
+115-->[com.google.firebase:firebase-firestore:25.0.0] /home/marcelo/.gradle/caches/transforms-3/385e60e1c81cd166a8ad3c908ae54a0f/transformed/jetified-firebase-firestore-25.0.0/AndroidManifest.xml:21:17-111
+116                android:value="com.google.firebase.components.ComponentRegistrar" />
+116-->[com.google.firebase:firebase-firestore:25.0.0] /home/marcelo/.gradle/caches/transforms-3/385e60e1c81cd166a8ad3c908ae54a0f/transformed/jetified-firebase-firestore-25.0.0/AndroidManifest.xml:22:17-82
+117            <meta-data
+117-->[com.google.firebase:firebase-common-ktx:21.0.0] /home/marcelo/.gradle/caches/transforms-3/041468c8c194628df920c596386b43ec/transformed/jetified-firebase-common-ktx-21.0.0/AndroidManifest.xml:12:13-14:85
+118                android:name="com.google.firebase.components:com.google.firebase.ktx.FirebaseCommonLegacyRegistrar"
+118-->[com.google.firebase:firebase-common-ktx:21.0.0] /home/marcelo/.gradle/caches/transforms-3/041468c8c194628df920c596386b43ec/transformed/jetified-firebase-common-ktx-21.0.0/AndroidManifest.xml:13:17-116
+119                android:value="com.google.firebase.components.ComponentRegistrar" />
+119-->[com.google.firebase:firebase-common-ktx:21.0.0] /home/marcelo/.gradle/caches/transforms-3/041468c8c194628df920c596386b43ec/transformed/jetified-firebase-common-ktx-21.0.0/AndroidManifest.xml:14:17-82
+120            <meta-data
+120-->[com.google.firebase:firebase-common:21.0.0] /home/marcelo/.gradle/caches/transforms-3/a1e9b7e171ebe989e7c2215846d4f6bc/transformed/jetified-firebase-common-21.0.0/AndroidManifest.xml:35:13-37:85
+121                android:name="com.google.firebase.components:com.google.firebase.FirebaseCommonKtxRegistrar"
+121-->[com.google.firebase:firebase-common:21.0.0] /home/marcelo/.gradle/caches/transforms-3/a1e9b7e171ebe989e7c2215846d4f6bc/transformed/jetified-firebase-common-21.0.0/AndroidManifest.xml:36:17-109
+122                android:value="com.google.firebase.components.ComponentRegistrar" />
+122-->[com.google.firebase:firebase-common:21.0.0] /home/marcelo/.gradle/caches/transforms-3/a1e9b7e171ebe989e7c2215846d4f6bc/transformed/jetified-firebase-common-21.0.0/AndroidManifest.xml:37:17-82
+123        </service>
+124
+125        <activity
+125-->[com.google.firebase:firebase-auth:23.0.0] /home/marcelo/.gradle/caches/transforms-3/9cca69bc2a3cda63922adb371828b58b/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:29:9-46:20
+126            android:name="com.google.firebase.auth.internal.GenericIdpActivity"
+126-->[com.google.firebase:firebase-auth:23.0.0] /home/marcelo/.gradle/caches/transforms-3/9cca69bc2a3cda63922adb371828b58b/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:30:13-80
+127            android:excludeFromRecents="true"
+127-->[com.google.firebase:firebase-auth:23.0.0] /home/marcelo/.gradle/caches/transforms-3/9cca69bc2a3cda63922adb371828b58b/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:31:13-46
+128            android:exported="true"
+128-->[com.google.firebase:firebase-auth:23.0.0] /home/marcelo/.gradle/caches/transforms-3/9cca69bc2a3cda63922adb371828b58b/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:32:13-36
+129            android:launchMode="singleTask"
+129-->[com.google.firebase:firebase-auth:23.0.0] /home/marcelo/.gradle/caches/transforms-3/9cca69bc2a3cda63922adb371828b58b/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:33:13-44
+130            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+130-->[com.google.firebase:firebase-auth:23.0.0] /home/marcelo/.gradle/caches/transforms-3/9cca69bc2a3cda63922adb371828b58b/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:34:13-72
+131            <intent-filter>
+131-->[com.google.firebase:firebase-auth:23.0.0] /home/marcelo/.gradle/caches/transforms-3/9cca69bc2a3cda63922adb371828b58b/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:35:13-45:29
+132                <action android:name="android.intent.action.VIEW" />
+132-->[com.google.firebase:firebase-auth:23.0.0] /home/marcelo/.gradle/caches/transforms-3/9cca69bc2a3cda63922adb371828b58b/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:36:17-69
+132-->[com.google.firebase:firebase-auth:23.0.0] /home/marcelo/.gradle/caches/transforms-3/9cca69bc2a3cda63922adb371828b58b/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:36:25-66
+133
+134                <category android:name="android.intent.category.DEFAULT" />
+134-->[com.google.firebase:firebase-auth:23.0.0] /home/marcelo/.gradle/caches/transforms-3/9cca69bc2a3cda63922adb371828b58b/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:38:17-76
+134-->[com.google.firebase:firebase-auth:23.0.0] /home/marcelo/.gradle/caches/transforms-3/9cca69bc2a3cda63922adb371828b58b/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:38:27-73
+135                <category android:name="android.intent.category.BROWSABLE" />
+135-->[com.google.firebase:firebase-auth:23.0.0] /home/marcelo/.gradle/caches/transforms-3/9cca69bc2a3cda63922adb371828b58b/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:39:17-78
+135-->[com.google.firebase:firebase-auth:23.0.0] /home/marcelo/.gradle/caches/transforms-3/9cca69bc2a3cda63922adb371828b58b/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:39:27-75
+136
+137                <data
+137-->/home/marcelo/github_repos/RestaurantOrderApp/android/app/src/main/AndroidManifest.xml:42:13-50
+138                    android:host="firebase.auth"
+139                    android:path="/"
+140                    android:scheme="genericidp" />
+141            </intent-filter>
+142        </activity>
+143        <activity
+143-->[com.google.firebase:firebase-auth:23.0.0] /home/marcelo/.gradle/caches/transforms-3/9cca69bc2a3cda63922adb371828b58b/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:47:9-64:20
+144            android:name="com.google.firebase.auth.internal.RecaptchaActivity"
+144-->[com.google.firebase:firebase-auth:23.0.0] /home/marcelo/.gradle/caches/transforms-3/9cca69bc2a3cda63922adb371828b58b/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:48:13-79
+145            android:excludeFromRecents="true"
+145-->[com.google.firebase:firebase-auth:23.0.0] /home/marcelo/.gradle/caches/transforms-3/9cca69bc2a3cda63922adb371828b58b/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:49:13-46
+146            android:exported="true"
+146-->[com.google.firebase:firebase-auth:23.0.0] /home/marcelo/.gradle/caches/transforms-3/9cca69bc2a3cda63922adb371828b58b/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:50:13-36
+147            android:launchMode="singleTask"
+147-->[com.google.firebase:firebase-auth:23.0.0] /home/marcelo/.gradle/caches/transforms-3/9cca69bc2a3cda63922adb371828b58b/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:51:13-44
+148            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+148-->[com.google.firebase:firebase-auth:23.0.0] /home/marcelo/.gradle/caches/transforms-3/9cca69bc2a3cda63922adb371828b58b/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:52:13-72
+149            <intent-filter>
+149-->[com.google.firebase:firebase-auth:23.0.0] /home/marcelo/.gradle/caches/transforms-3/9cca69bc2a3cda63922adb371828b58b/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:53:13-63:29
+150                <action android:name="android.intent.action.VIEW" />
+150-->[com.google.firebase:firebase-auth:23.0.0] /home/marcelo/.gradle/caches/transforms-3/9cca69bc2a3cda63922adb371828b58b/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:36:17-69
+150-->[com.google.firebase:firebase-auth:23.0.0] /home/marcelo/.gradle/caches/transforms-3/9cca69bc2a3cda63922adb371828b58b/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:36:25-66
+151
+152                <category android:name="android.intent.category.DEFAULT" />
+152-->[com.google.firebase:firebase-auth:23.0.0] /home/marcelo/.gradle/caches/transforms-3/9cca69bc2a3cda63922adb371828b58b/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:38:17-76
+152-->[com.google.firebase:firebase-auth:23.0.0] /home/marcelo/.gradle/caches/transforms-3/9cca69bc2a3cda63922adb371828b58b/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:38:27-73
+153                <category android:name="android.intent.category.BROWSABLE" />
+153-->[com.google.firebase:firebase-auth:23.0.0] /home/marcelo/.gradle/caches/transforms-3/9cca69bc2a3cda63922adb371828b58b/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:39:17-78
+153-->[com.google.firebase:firebase-auth:23.0.0] /home/marcelo/.gradle/caches/transforms-3/9cca69bc2a3cda63922adb371828b58b/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:39:27-75
+154
+155                <data
+155-->/home/marcelo/github_repos/RestaurantOrderApp/android/app/src/main/AndroidManifest.xml:42:13-50
+156                    android:host="firebase.auth"
+157                    android:path="/"
+158                    android:scheme="recaptcha" />
+159            </intent-filter>
+160        </activity>
+161
+162        <service
+162-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/marcelo/.gradle/caches/transforms-3/a9b08db1573a95b453ac84331ed80949/transformed/jetified-credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:24:9-32:19
+163            android:name="androidx.credentials.playservices.CredentialProviderMetadataHolder"
+163-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/marcelo/.gradle/caches/transforms-3/a9b08db1573a95b453ac84331ed80949/transformed/jetified-credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:25:13-94
+164            android:enabled="true"
+164-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/marcelo/.gradle/caches/transforms-3/a9b08db1573a95b453ac84331ed80949/transformed/jetified-credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:26:13-35
+165            android:exported="false" >
+165-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/marcelo/.gradle/caches/transforms-3/a9b08db1573a95b453ac84331ed80949/transformed/jetified-credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:27:13-37
+166            <meta-data
+166-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/marcelo/.gradle/caches/transforms-3/a9b08db1573a95b453ac84331ed80949/transformed/jetified-credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:29:13-31:104
+167                android:name="androidx.credentials.CREDENTIAL_PROVIDER_KEY"
+167-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/marcelo/.gradle/caches/transforms-3/a9b08db1573a95b453ac84331ed80949/transformed/jetified-credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:30:17-76
+168                android:value="androidx.credentials.playservices.CredentialProviderPlayServicesImpl" />
+168-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/marcelo/.gradle/caches/transforms-3/a9b08db1573a95b453ac84331ed80949/transformed/jetified-credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:31:17-101
+169        </service>
+170
+171        <activity
+171-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/marcelo/.gradle/caches/transforms-3/a9b08db1573a95b453ac84331ed80949/transformed/jetified-credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:34:9-41:20
+172            android:name="androidx.credentials.playservices.HiddenActivity"
+172-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/marcelo/.gradle/caches/transforms-3/a9b08db1573a95b453ac84331ed80949/transformed/jetified-credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:35:13-76
+173            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+173-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/marcelo/.gradle/caches/transforms-3/a9b08db1573a95b453ac84331ed80949/transformed/jetified-credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:36:13-87
+174            android:enabled="true"
+174-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/marcelo/.gradle/caches/transforms-3/a9b08db1573a95b453ac84331ed80949/transformed/jetified-credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:37:13-35
+175            android:exported="false"
+175-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/marcelo/.gradle/caches/transforms-3/a9b08db1573a95b453ac84331ed80949/transformed/jetified-credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:38:13-37
+176            android:fitsSystemWindows="true"
+176-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/marcelo/.gradle/caches/transforms-3/a9b08db1573a95b453ac84331ed80949/transformed/jetified-credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:39:13-45
+177            android:theme="@style/Theme.Hidden" >
+177-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/marcelo/.gradle/caches/transforms-3/a9b08db1573a95b453ac84331ed80949/transformed/jetified-credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:40:13-48
+178        </activity>
 179
-180        <meta-data
-180-->[com.google.android.gms:play-services-basement:18.3.0] /home/marcelo/.gradle/caches/transforms-3/e76aed36a087f5f71489bfa0e357771e/transformed/jetified-play-services-basement-18.3.0/AndroidManifest.xml:21:9-23:69
-181            android:name="com.google.android.gms.version"
-181-->[com.google.android.gms:play-services-basement:18.3.0] /home/marcelo/.gradle/caches/transforms-3/e76aed36a087f5f71489bfa0e357771e/transformed/jetified-play-services-basement-18.3.0/AndroidManifest.xml:22:13-58
-182            android:value="@integer/google_play_services_version" />
-182-->[com.google.android.gms:play-services-basement:18.3.0] /home/marcelo/.gradle/caches/transforms-3/e76aed36a087f5f71489bfa0e357771e/transformed/jetified-play-services-basement-18.3.0/AndroidManifest.xml:23:13-66
-183
-184        <provider
-184-->[androidx.emoji2:emoji2:1.0.0] /home/marcelo/.gradle/caches/transforms-3/4963565b6a24df4031f6dafd14a1caf6/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:26:9-34:20
-185            android:name="androidx.startup.InitializationProvider"
-185-->[androidx.emoji2:emoji2:1.0.0] /home/marcelo/.gradle/caches/transforms-3/4963565b6a24df4031f6dafd14a1caf6/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:27:13-67
-186            android:authorities="com.example.restaurant_app_new.androidx-startup"
-186-->[androidx.emoji2:emoji2:1.0.0] /home/marcelo/.gradle/caches/transforms-3/4963565b6a24df4031f6dafd14a1caf6/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:28:13-68
-187            android:exported="false" >
-187-->[androidx.emoji2:emoji2:1.0.0] /home/marcelo/.gradle/caches/transforms-3/4963565b6a24df4031f6dafd14a1caf6/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:29:13-37
-188            <meta-data
-188-->[androidx.emoji2:emoji2:1.0.0] /home/marcelo/.gradle/caches/transforms-3/4963565b6a24df4031f6dafd14a1caf6/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:31:13-33:52
-189                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-189-->[androidx.emoji2:emoji2:1.0.0] /home/marcelo/.gradle/caches/transforms-3/4963565b6a24df4031f6dafd14a1caf6/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:32:17-75
-190                android:value="androidx.startup" />
-190-->[androidx.emoji2:emoji2:1.0.0] /home/marcelo/.gradle/caches/transforms-3/4963565b6a24df4031f6dafd14a1caf6/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:33:17-49
-191            <meta-data
-191-->[androidx.lifecycle:lifecycle-process:2.4.0] /home/marcelo/.gradle/caches/transforms-3/77c6b705f5ecb4e00308b759775731de/transformed/jetified-lifecycle-process-2.4.0/AndroidManifest.xml:31:13-33:52
-192                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-192-->[androidx.lifecycle:lifecycle-process:2.4.0] /home/marcelo/.gradle/caches/transforms-3/77c6b705f5ecb4e00308b759775731de/transformed/jetified-lifecycle-process-2.4.0/AndroidManifest.xml:32:17-78
-193                android:value="androidx.startup" />
-193-->[androidx.lifecycle:lifecycle-process:2.4.0] /home/marcelo/.gradle/caches/transforms-3/77c6b705f5ecb4e00308b759775731de/transformed/jetified-lifecycle-process-2.4.0/AndroidManifest.xml:33:17-49
-194        </provider>
-195
-196        <activity
-196-->[com.journeyapps:zxing-android-embedded:4.3.0] /home/marcelo/.gradle/caches/transforms-3/53f9275dc0275c383e6d4e1d15817a1a/transformed/jetified-zxing-android-embedded-4.3.0/AndroidManifest.xml:47:9-53:63
-197            android:name="com.journeyapps.barcodescanner.CaptureActivity"
-197-->[com.journeyapps:zxing-android-embedded:4.3.0] /home/marcelo/.gradle/caches/transforms-3/53f9275dc0275c383e6d4e1d15817a1a/transformed/jetified-zxing-android-embedded-4.3.0/AndroidManifest.xml:48:13-74
-198            android:clearTaskOnLaunch="true"
-198-->[com.journeyapps:zxing-android-embedded:4.3.0] /home/marcelo/.gradle/caches/transforms-3/53f9275dc0275c383e6d4e1d15817a1a/transformed/jetified-zxing-android-embedded-4.3.0/AndroidManifest.xml:49:13-45
-199            android:screenOrientation="sensorLandscape"
-199-->[com.journeyapps:zxing-android-embedded:4.3.0] /home/marcelo/.gradle/caches/transforms-3/53f9275dc0275c383e6d4e1d15817a1a/transformed/jetified-zxing-android-embedded-4.3.0/AndroidManifest.xml:50:13-56
-200            android:stateNotNeeded="true"
-200-->[com.journeyapps:zxing-android-embedded:4.3.0] /home/marcelo/.gradle/caches/transforms-3/53f9275dc0275c383e6d4e1d15817a1a/transformed/jetified-zxing-android-embedded-4.3.0/AndroidManifest.xml:51:13-42
-201            android:theme="@style/zxing_CaptureTheme"
-201-->[com.journeyapps:zxing-android-embedded:4.3.0] /home/marcelo/.gradle/caches/transforms-3/53f9275dc0275c383e6d4e1d15817a1a/transformed/jetified-zxing-android-embedded-4.3.0/AndroidManifest.xml:52:13-54
-202            android:windowSoftInputMode="stateAlwaysHidden" />
-202-->[com.journeyapps:zxing-android-embedded:4.3.0] /home/marcelo/.gradle/caches/transforms-3/53f9275dc0275c383e6d4e1d15817a1a/transformed/jetified-zxing-android-embedded-4.3.0/AndroidManifest.xml:53:13-60
-203    </application>
-204
-205</manifest>
+180        <provider
+180-->[com.google.firebase:firebase-common:21.0.0] /home/marcelo/.gradle/caches/transforms-3/a1e9b7e171ebe989e7c2215846d4f6bc/transformed/jetified-firebase-common-21.0.0/AndroidManifest.xml:23:9-28:39
+181            android:name="com.google.firebase.provider.FirebaseInitProvider"
+181-->[com.google.firebase:firebase-common:21.0.0] /home/marcelo/.gradle/caches/transforms-3/a1e9b7e171ebe989e7c2215846d4f6bc/transformed/jetified-firebase-common-21.0.0/AndroidManifest.xml:24:13-77
+182            android:authorities="com.example.restaurant_app_new.firebaseinitprovider"
+182-->[com.google.firebase:firebase-common:21.0.0] /home/marcelo/.gradle/caches/transforms-3/a1e9b7e171ebe989e7c2215846d4f6bc/transformed/jetified-firebase-common-21.0.0/AndroidManifest.xml:25:13-72
+183            android:directBootAware="true"
+183-->[com.google.firebase:firebase-common:21.0.0] /home/marcelo/.gradle/caches/transforms-3/a1e9b7e171ebe989e7c2215846d4f6bc/transformed/jetified-firebase-common-21.0.0/AndroidManifest.xml:26:13-43
+184            android:exported="false"
+184-->[com.google.firebase:firebase-common:21.0.0] /home/marcelo/.gradle/caches/transforms-3/a1e9b7e171ebe989e7c2215846d4f6bc/transformed/jetified-firebase-common-21.0.0/AndroidManifest.xml:27:13-37
+185            android:initOrder="100" />
+185-->[com.google.firebase:firebase-common:21.0.0] /home/marcelo/.gradle/caches/transforms-3/a1e9b7e171ebe989e7c2215846d4f6bc/transformed/jetified-firebase-common-21.0.0/AndroidManifest.xml:28:13-36
+186
+187        <uses-library
+187-->[androidx.window:window:1.0.0-beta04] /home/marcelo/.gradle/caches/transforms-3/1f063c91a907141588f51f373b1f5f4a/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:25:9-27:40
+188            android:name="androidx.window.extensions"
+188-->[androidx.window:window:1.0.0-beta04] /home/marcelo/.gradle/caches/transforms-3/1f063c91a907141588f51f373b1f5f4a/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:26:13-54
+189            android:required="false" />
+189-->[androidx.window:window:1.0.0-beta04] /home/marcelo/.gradle/caches/transforms-3/1f063c91a907141588f51f373b1f5f4a/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:27:13-37
+190        <uses-library
+190-->[androidx.window:window:1.0.0-beta04] /home/marcelo/.gradle/caches/transforms-3/1f063c91a907141588f51f373b1f5f4a/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:28:9-30:40
+191            android:name="androidx.window.sidecar"
+191-->[androidx.window:window:1.0.0-beta04] /home/marcelo/.gradle/caches/transforms-3/1f063c91a907141588f51f373b1f5f4a/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:29:13-51
+192            android:required="false" />
+192-->[androidx.window:window:1.0.0-beta04] /home/marcelo/.gradle/caches/transforms-3/1f063c91a907141588f51f373b1f5f4a/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:30:13-37
+193
+194        <activity
+194-->[com.google.android.gms:play-services-auth:20.7.0] /home/marcelo/.gradle/caches/transforms-3/6a06f0f0976051339cd8586c8d08c60b/transformed/jetified-play-services-auth-20.7.0/AndroidManifest.xml:23:9-27:75
+195            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+195-->[com.google.android.gms:play-services-auth:20.7.0] /home/marcelo/.gradle/caches/transforms-3/6a06f0f0976051339cd8586c8d08c60b/transformed/jetified-play-services-auth-20.7.0/AndroidManifest.xml:24:13-93
+196            android:excludeFromRecents="true"
+196-->[com.google.android.gms:play-services-auth:20.7.0] /home/marcelo/.gradle/caches/transforms-3/6a06f0f0976051339cd8586c8d08c60b/transformed/jetified-play-services-auth-20.7.0/AndroidManifest.xml:25:13-46
+197            android:exported="false"
+197-->[com.google.android.gms:play-services-auth:20.7.0] /home/marcelo/.gradle/caches/transforms-3/6a06f0f0976051339cd8586c8d08c60b/transformed/jetified-play-services-auth-20.7.0/AndroidManifest.xml:26:13-37
+198            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+198-->[com.google.android.gms:play-services-auth:20.7.0] /home/marcelo/.gradle/caches/transforms-3/6a06f0f0976051339cd8586c8d08c60b/transformed/jetified-play-services-auth-20.7.0/AndroidManifest.xml:27:13-72
+199        <!--
+200            Service handling Google Sign-In user revocation. For apps that do not integrate with
+201            Google Sign-In, this service will never be started.
+202        -->
+203        <service
+203-->[com.google.android.gms:play-services-auth:20.7.0] /home/marcelo/.gradle/caches/transforms-3/6a06f0f0976051339cd8586c8d08c60b/transformed/jetified-play-services-auth-20.7.0/AndroidManifest.xml:33:9-37:51
+204            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+204-->[com.google.android.gms:play-services-auth:20.7.0] /home/marcelo/.gradle/caches/transforms-3/6a06f0f0976051339cd8586c8d08c60b/transformed/jetified-play-services-auth-20.7.0/AndroidManifest.xml:34:13-89
+205            android:exported="true"
+205-->[com.google.android.gms:play-services-auth:20.7.0] /home/marcelo/.gradle/caches/transforms-3/6a06f0f0976051339cd8586c8d08c60b/transformed/jetified-play-services-auth-20.7.0/AndroidManifest.xml:35:13-36
+206            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
+206-->[com.google.android.gms:play-services-auth:20.7.0] /home/marcelo/.gradle/caches/transforms-3/6a06f0f0976051339cd8586c8d08c60b/transformed/jetified-play-services-auth-20.7.0/AndroidManifest.xml:36:13-107
+207            android:visibleToInstantApps="true" />
+207-->[com.google.android.gms:play-services-auth:20.7.0] /home/marcelo/.gradle/caches/transforms-3/6a06f0f0976051339cd8586c8d08c60b/transformed/jetified-play-services-auth-20.7.0/AndroidManifest.xml:37:13-48
+208
+209        <activity
+209-->[com.google.android.gms:play-services-base:18.0.1] /home/marcelo/.gradle/caches/transforms-3/83bd7fcc26403a15e00188c3570da0fa/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:9-22:45
+210            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+210-->[com.google.android.gms:play-services-base:18.0.1] /home/marcelo/.gradle/caches/transforms-3/83bd7fcc26403a15e00188c3570da0fa/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:19-85
+211            android:exported="false"
+211-->[com.google.android.gms:play-services-base:18.0.1] /home/marcelo/.gradle/caches/transforms-3/83bd7fcc26403a15e00188c3570da0fa/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:22:19-43
+212            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+212-->[com.google.android.gms:play-services-base:18.0.1] /home/marcelo/.gradle/caches/transforms-3/83bd7fcc26403a15e00188c3570da0fa/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:21:19-78
+213
+214        <meta-data
+214-->[com.google.android.gms:play-services-basement:18.3.0] /home/marcelo/.gradle/caches/transforms-3/e76aed36a087f5f71489bfa0e357771e/transformed/jetified-play-services-basement-18.3.0/AndroidManifest.xml:21:9-23:69
+215            android:name="com.google.android.gms.version"
+215-->[com.google.android.gms:play-services-basement:18.3.0] /home/marcelo/.gradle/caches/transforms-3/e76aed36a087f5f71489bfa0e357771e/transformed/jetified-play-services-basement-18.3.0/AndroidManifest.xml:22:13-58
+216            android:value="@integer/google_play_services_version" />
+216-->[com.google.android.gms:play-services-basement:18.3.0] /home/marcelo/.gradle/caches/transforms-3/e76aed36a087f5f71489bfa0e357771e/transformed/jetified-play-services-basement-18.3.0/AndroidManifest.xml:23:13-66
+217
+218        <provider
+218-->[androidx.emoji2:emoji2:1.0.0] /home/marcelo/.gradle/caches/transforms-3/4963565b6a24df4031f6dafd14a1caf6/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:26:9-34:20
+219            android:name="androidx.startup.InitializationProvider"
+219-->[androidx.emoji2:emoji2:1.0.0] /home/marcelo/.gradle/caches/transforms-3/4963565b6a24df4031f6dafd14a1caf6/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:27:13-67
+220            android:authorities="com.example.restaurant_app_new.androidx-startup"
+220-->[androidx.emoji2:emoji2:1.0.0] /home/marcelo/.gradle/caches/transforms-3/4963565b6a24df4031f6dafd14a1caf6/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:28:13-68
+221            android:exported="false" >
+221-->[androidx.emoji2:emoji2:1.0.0] /home/marcelo/.gradle/caches/transforms-3/4963565b6a24df4031f6dafd14a1caf6/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:29:13-37
+222            <meta-data
+222-->[androidx.emoji2:emoji2:1.0.0] /home/marcelo/.gradle/caches/transforms-3/4963565b6a24df4031f6dafd14a1caf6/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:31:13-33:52
+223                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+223-->[androidx.emoji2:emoji2:1.0.0] /home/marcelo/.gradle/caches/transforms-3/4963565b6a24df4031f6dafd14a1caf6/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:32:17-75
+224                android:value="androidx.startup" />
+224-->[androidx.emoji2:emoji2:1.0.0] /home/marcelo/.gradle/caches/transforms-3/4963565b6a24df4031f6dafd14a1caf6/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:33:17-49
+225            <meta-data
+225-->[androidx.lifecycle:lifecycle-process:2.4.0] /home/marcelo/.gradle/caches/transforms-3/77c6b705f5ecb4e00308b759775731de/transformed/jetified-lifecycle-process-2.4.0/AndroidManifest.xml:31:13-33:52
+226                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+226-->[androidx.lifecycle:lifecycle-process:2.4.0] /home/marcelo/.gradle/caches/transforms-3/77c6b705f5ecb4e00308b759775731de/transformed/jetified-lifecycle-process-2.4.0/AndroidManifest.xml:32:17-78
+227                android:value="androidx.startup" />
+227-->[androidx.lifecycle:lifecycle-process:2.4.0] /home/marcelo/.gradle/caches/transforms-3/77c6b705f5ecb4e00308b759775731de/transformed/jetified-lifecycle-process-2.4.0/AndroidManifest.xml:33:17-49
+228        </provider>
+229
+230        <activity
+230-->[com.journeyapps:zxing-android-embedded:4.3.0] /home/marcelo/.gradle/caches/transforms-3/53f9275dc0275c383e6d4e1d15817a1a/transformed/jetified-zxing-android-embedded-4.3.0/AndroidManifest.xml:47:9-53:63
+231            android:name="com.journeyapps.barcodescanner.CaptureActivity"
+231-->[com.journeyapps:zxing-android-embedded:4.3.0] /home/marcelo/.gradle/caches/transforms-3/53f9275dc0275c383e6d4e1d15817a1a/transformed/jetified-zxing-android-embedded-4.3.0/AndroidManifest.xml:48:13-74
+232            android:clearTaskOnLaunch="true"
+232-->[com.journeyapps:zxing-android-embedded:4.3.0] /home/marcelo/.gradle/caches/transforms-3/53f9275dc0275c383e6d4e1d15817a1a/transformed/jetified-zxing-android-embedded-4.3.0/AndroidManifest.xml:49:13-45
+233            android:screenOrientation="sensorLandscape"
+233-->[com.journeyapps:zxing-android-embedded:4.3.0] /home/marcelo/.gradle/caches/transforms-3/53f9275dc0275c383e6d4e1d15817a1a/transformed/jetified-zxing-android-embedded-4.3.0/AndroidManifest.xml:50:13-56
+234            android:stateNotNeeded="true"
+234-->[com.journeyapps:zxing-android-embedded:4.3.0] /home/marcelo/.gradle/caches/transforms-3/53f9275dc0275c383e6d4e1d15817a1a/transformed/jetified-zxing-android-embedded-4.3.0/AndroidManifest.xml:51:13-42
+235            android:theme="@style/zxing_CaptureTheme"
+235-->[com.journeyapps:zxing-android-embedded:4.3.0] /home/marcelo/.gradle/caches/transforms-3/53f9275dc0275c383e6d4e1d15817a1a/transformed/jetified-zxing-android-embedded-4.3.0/AndroidManifest.xml:52:13-54
+236            android:windowSoftInputMode="stateAlwaysHidden" />
+236-->[com.journeyapps:zxing-android-embedded:4.3.0] /home/marcelo/.gradle/caches/transforms-3/53f9275dc0275c383e6d4e1d15817a1a/transformed/jetified-zxing-android-embedded-4.3.0/AndroidManifest.xml:53:13-60
+237    </application>
+238
+239</manifest>

@@ -18,6 +18,21 @@ class _AddItemDialogState extends State<AddItemDialog> {
   String itemType = 'main';
   final List<String> itemTypes = ['entree', 'dessert', 'main', 'drink', 'cafeteria', 'spirits'];
 
+  Future<int> _getNextItemId() async {
+    final QuerySnapshot result = await FirebaseFirestore.instance
+        .collection('items')
+        .orderBy('itemId', descending: true)
+        .limit(1)
+        .get();
+
+    if (result.docs.isEmpty) {
+      return 1;
+    }
+
+    final int highestId = result.docs.first.get('itemId') as int;
+    return highestId + 1;
+  }
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -96,11 +111,17 @@ class _AddItemDialogState extends State<AddItemDialog> {
         ElevatedButton(
           onPressed: () async {
             if (_formKey.currentState!.validate()) {
-              await FirebaseFirestore.instance.collection('items').add({
+              final int nextItemId = await _getNextItemId();
+              final String docId = 'item$nextItemId';
+              await FirebaseFirestore.instance
+                  .collection('items')
+                  .doc(docId)  // Specify the document ID
+                  .set({      // Use set instead of add
+                'itemAvailable': itemAvailable,
+                'itemId': nextItemId,
+                'itemMenu': itemType == 'main' ? itemMenu : null,
                 'itemName': itemName,
                 'itemType': itemType,
-                'itemMenu': itemType == 'main' ? itemMenu : null,
-                'availability': itemAvailable ? 'available' : 'unavailable',
               });
               widget.onItemAdded();
               Navigator.of(context).pop();

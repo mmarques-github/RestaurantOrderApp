@@ -343,6 +343,7 @@ class _OrderDialogState extends State<OrderDialog> {
                       var itemId = menuItem.id;
                       var itemName = menuItemData['itemName'] ?? 'Unknown';
                       var currentPortion = itemPortions[itemId] ?? 0;
+                      var itemAvailable = menuItemData['itemAvailable'] ?? true;
 
                       return ListTile(
                         title: Text(itemName),
@@ -351,27 +352,35 @@ class _OrderDialogState extends State<OrderDialog> {
                           children: [
                             IconButton(
                               icon: Icon(Icons.remove),
-                              onPressed: () {
-                                setState(() {
-                                  if (currentPortion > 0) {
-                                    // Decrease the portion by 1
-                                    itemPortions[itemId] = currentPortion - 1;
-                                  }
-                                });
-                              },
+                              onPressed: itemAvailable
+                                  ? () {
+                                      setState(() {
+                                        if (currentPortion > 0) {
+                                          // Decrease the portion by 1
+                                          itemPortions[itemId] = currentPortion - 1;
+                                        }
+                                      });
+                                    }
+                                  : null,
                             ),
                             Text(currentPortion.toString()),
                             IconButton(
                               icon: Icon(Icons.add),
-                              onPressed: () {
-                                setState(() {
-                                  // Increase the portion by 1
-                                  itemPortions[itemId] = currentPortion + 1;
-                                });
-                              },
+                              onPressed: itemAvailable
+                                  ? () {
+                                      setState(() {
+                                        // Increase the portion by 1
+                                        itemPortions[itemId] = currentPortion + 1;
+                                      });
+                                    }
+                                  : null,
                             ),
                           ],
                         ),
+                        enabled: itemAvailable,
+                        textColor: itemAvailable
+                            ? null
+                            : Theme.of(context).disabledColor,
                       );
                     },
                   );

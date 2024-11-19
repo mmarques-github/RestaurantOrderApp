@@ -40,16 +40,22 @@ class AuthService {
 
   // Sign in with custom username and password
   Future<bool> signIn(String username, String password) async {
+    print("Username: $username; Password: $password");
     try {
-      final userDoc = await _firestore.collection('users').doc(username).get();
+      final querySnapshot = await _firestore
+          .collection('users')
+          .where('username', isEqualTo: username)
+          .get();
 
-      if (userDoc.exists) {
+      if (querySnapshot.docs.isNotEmpty) {
+        final userDoc = querySnapshot.docs.first;
         final userData = userDoc.data();
-        if (userData != null && userData['password'] == password){ //hashPassword(password)) {
+        if (userData != null && userData['password'] == password) {
           print('Sign in successful');
           return true;
         } else {
           print('Incorrect password');
+          print('Expected: ${userData['password']};\nActual: ${password}');
           return false;
         }
       } else {
@@ -65,9 +71,13 @@ class AuthService {
   // Get user info
   Future<Map<String, dynamic>?> getUserInfo(String username) async {
     try {
-      final userDoc = await _firestore.collection('users').doc(username).get();
-      if (userDoc.exists) {
-        return userDoc.data();
+      final querySnapshot = await _firestore
+          .collection('users')
+          .where('username', isEqualTo: username)
+          .get();
+
+      if (querySnapshot.docs.isNotEmpty) {
+        return querySnapshot.docs.first.data();
       } else {
         print('User does not exist');
         return null;

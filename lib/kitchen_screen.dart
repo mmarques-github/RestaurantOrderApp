@@ -17,6 +17,8 @@ const Color readyColor = Colors.green;
 const Color deliveredColor = Colors.grey;
 const Color delayedColor = Colors.red;
 
+final states = ['pending', 'preparing', 'ready', 'delivered', 'payed'];
+
 class KitchenScreen extends StatefulWidget {
   @override
   _KitchenScreenState createState() => _KitchenScreenState();
@@ -35,6 +37,9 @@ class _KitchenScreenState extends State<KitchenScreen> {
   // **Add these variables for the toggles**
   bool showTableOrders = true;
   bool showTakeawayOrders = true;
+  bool showTodayOrders = false;
+
+  double fontSize = 14.0; // Add this for font size control
 
   @override
   void initState() {
@@ -42,6 +47,7 @@ class _KitchenScreenState extends State<KitchenScreen> {
     loadUsername();
     _loadMenuType();
     _loadPreferences(); // Load saved preferences
+    _loadFontSize(); // Add this
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.landscapeRight,
       DeviceOrientation.landscapeLeft,
@@ -81,7 +87,24 @@ class _KitchenScreenState extends State<KitchenScreen> {
     showTableOrders = await Preferences.getShowTableOrders();
     showTakeawayOrders = await Preferences.getShowTakeawayOrders();
     groupByItem = await Preferences.getGroupByItem();
+    showTodayOrders = await Preferences.getShowTodayOrders();
     setState(() {});
+  }
+
+  // Add this method to load saved font size
+  Future<void> _loadFontSize() async {
+    final savedSize = await Preferences.getFontSize();
+    setState(() {
+      fontSize = savedSize;
+    });
+  }
+
+  // Add this method to save font size
+  Future<void> _saveFontSize(double size) async {
+    await Preferences.setFontSize(size);
+    setState(() {
+      fontSize = size;
+    });
   }
 
   void _toggleScreen() {
@@ -108,6 +131,32 @@ class _KitchenScreenState extends State<KitchenScreen> {
       appBar: AppBar(
         title: Text(isKitchenScreen ? 'Kitchen Screen' : 'Waiter Screen'),
         actions: [
+          // Add font size controls before the screen toggle
+          if (isKitchenScreen) ...[
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                IconButton(
+                  icon: Icon(Icons.remove),
+                  onPressed: () {
+                    if (fontSize > 8.0) {
+                      _saveFontSize(fontSize - 2.0);
+                    }
+                  },
+                ),
+                Text('Font Size: ${fontSize.round()}', 
+                  style: TextStyle(fontSize: 16)),
+                IconButton(
+                  icon: Icon(Icons.add),
+                  onPressed: () {
+                    if (fontSize < 32.0) {
+                      _saveFontSize(fontSize + 2.0);
+                    }
+                  },
+                ),
+              ],
+            ),
+          ],
           ToggleButtons(
             children: <Widget>[
               Icon(Icons.kitchen),
@@ -176,6 +225,17 @@ class _KitchenScreenState extends State<KitchenScreen> {
                           });
                         },
                       ),
+                      SizedBox(width: 16),
+                      Text('Today'),
+                      Switch(
+                        value: showTodayOrders,
+                        onChanged: (value) async {
+                          await Preferences.setShowTodayOrders(value);
+                          setState(() {
+                            showTodayOrders = value;
+                          });
+                        },
+                      ),
                     ],
                   ),
                   // Expanded Orders List
@@ -195,8 +255,24 @@ class _KitchenScreenState extends State<KitchenScreen> {
 
                         var orders = snapshot.data!.docs;
 
-                        // Filter out 'delivered' and 'cancelled' orders
-                        orders = orders.where((order) => order['orderStatus'] != 'delivered' && order['orderStatus'] != 'cancelled').toList();
+                        // Filter out 'delivered' and 'payed' orders
+                        orders = orders.where((order) => 
+                          order['orderStatus'] != 'delivered' && 
+                          order['orderStatus'] != 'payed'
+                        ).toList();
+
+                        // Filter out non-main items using the items list
+                        orders = orders.where((order) {
+                          var itemId = order['itemId'];
+                          var matchingItem = items?.firstWhereOrNull(
+                            (item) => (item.data() as Map<String, dynamic>)['itemId'] == itemId
+                          );
+                          if (matchingItem != null) {
+                            var itemData = matchingItem.data() as Map<String, dynamic>;
+                            return itemData['itemType'] == 'main';
+                          }
+                          return false;
+                        }).toList();
 
                         // **Apply filters based on the toggles**
                         if (!showTableOrders) {
@@ -204,6 +280,25 @@ class _KitchenScreenState extends State<KitchenScreen> {
                         }
                         if (!showTakeawayOrders) {
                           orders = orders.where((order) => order['orderType'] != 'takeaway').toList();
+                        }
+
+                        if (showTodayOrders) {
+                          DateTime todayStart = DateTime.now();
+                          todayStart = DateTime(todayStart.year, todayStart.month, todayStart.day);
+                          orders = orders.where((order) {
+                            Timestamp? timeStamp;
+                            if (order['orderType'] == 'table') {
+                              timeStamp = order['orderTime'] as Timestamp?;
+                            } else {
+                              timeStamp = order['deliveryTime'] as Timestamp?;
+                            }
+                            if (timeStamp != null) {
+                              DateTime orderDate = timeStamp.toDate();
+                              return orderDate.isAfter(todayStart);
+                            } else {
+                              return false;
+                            }
+                          }).toList();
                         }
 
                         if (groupByItem) {
@@ -241,6 +336,7 @@ class _KitchenScreenState extends State<KitchenScreen> {
                                 totalPortions: totalPortions.toInt(), // Convert to int
                                 orders: ordersList,
                                 items: items,
+                                fontSize: fontSize, // Pass the font size
                               );
                             },
                           );
@@ -266,6 +362,7 @@ class _KitchenScreenState extends State<KitchenScreen> {
                                 order: order,
                                 items: items,
                                 orderNumber: index + 1,
+                                fontSize: fontSize, // Pass the font size
                               );
                             },
                           );
@@ -294,9 +391,14 @@ class _KitchenScreenState extends State<KitchenScreen> {
                           });
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: selectedMenuType == 'Daily'
-                              ? Colors.blue
-                              : Colors.grey,
+                          backgroundColor: selectedMenuType == 'Daily' 
+                              ? Colors.purple.shade200 
+                              : Colors.grey.shade200,
+                          side: BorderSide(
+                            color: selectedMenuType == 'Daily'
+                                ? Colors.purple.shade200
+                                : Colors.grey.shade900,
+                          ),
                         ),
                         child: Text('Daily'),
                       ),
@@ -310,8 +412,13 @@ class _KitchenScreenState extends State<KitchenScreen> {
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: selectedMenuType == 'Fixed'
-                              ? Colors.blue
-                              : Colors.grey,
+                              ? Colors.purple.shade200
+                              : Colors.grey.shade200,
+                          side: BorderSide(
+                            color: selectedMenuType == 'Fixed'
+                                ? Colors.purple.shade200
+                                : Colors.grey.shade900,
+                          ),
                         ),
                         child: Text('Fixed'),
                       ),
@@ -325,8 +432,13 @@ class _KitchenScreenState extends State<KitchenScreen> {
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: selectedMenuType == 'Sunday'
-                              ? Colors.blue
-                              : Colors.grey,
+                              ? Colors.purple.shade200
+                              : Colors.grey.shade200,
+                          side: BorderSide(
+                            color: selectedMenuType == 'Sunday'
+                                ? Colors.purple.shade200
+                                : Colors.grey.shade900,
+                          ),
                         ),
                         child: Text('Sunday'),
                       ),
@@ -378,37 +490,65 @@ class _KitchenScreenState extends State<KitchenScreen> {
                           itemCount: items.length,
                           itemBuilder: (context, index) {
                             var menuItem = items[index];
+                            var isAvailable = menuItem['itemAvailable'] ?? true;
                             return ListTile(
                               title: Text(menuItem['itemName']),
-                              trailing: IconButton(
-                                icon: Icon(Icons.delete),
-                                onPressed: () {
-                                  showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return AlertDialog(
-                                        title: Text('Delete Item'),
-                                        content: Text(
-                                            'Are you sure you want to delete this item?'),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () {
-                                              Navigator.of(context).pop();
-                                            },
-                                            child: Text('Cancel'),
-                                          ),
-                                          TextButton(
-                                            onPressed: () {
-                                              menuItem.reference.delete();
-                                              Navigator.of(context).pop();
-                                            },
-                                            child: Text('Delete'),
-                                          ),
-                                        ],
+                              enabled: isAvailable,
+                              textColor: isAvailable 
+                                  ? null 
+                                  : Theme.of(context).disabledColor,
+                              trailing: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  IconButton(
+                                    icon: Icon(
+                                      isAvailable 
+                                          ? Icons.not_interested
+                                          : Icons.check_circle,
+                                      color: isAvailable 
+                                          ? Colors.red 
+                                          : Colors.green,
+                                    ),
+                                    onPressed: () async {
+                                      await FirebaseFirestore.instance
+                                          .collection('items')
+                                          .doc(menuItem.id)
+                                          .update({
+                                        'itemAvailable': !isAvailable
+                                      });
+                                    },
+                                  ),
+                                  IconButton(
+                                    icon: Icon(Icons.delete),
+                                    onPressed: () {
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                            title: Text('Delete Item'),
+                                            content: Text(
+                                                'Are you sure you want to delete this item?'),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () {
+                                                  Navigator.of(context).pop();
+                                                },
+                                                child: Text('Cancel'),
+                                              ),
+                                              TextButton(
+                                                onPressed: () {
+                                                  menuItem.reference.delete();
+                                                  Navigator.of(context).pop();
+                                                },
+                                                child: Text('Delete'),
+                                              ),
+                                            ],
+                                          );
+                                        },
                                       );
                                     },
-                                  );
-                                },
+                                  ),
+                                ],
                               ),
                             );
                           },
@@ -483,6 +623,7 @@ class GroupedOrderCard extends StatefulWidget {
   final int totalPortions;
   final List<QueryDocumentSnapshot> orders;
   final List<QueryDocumentSnapshot>? items;
+  final double fontSize;
 
   const GroupedOrderCard({
     Key? key,
@@ -491,6 +632,7 @@ class GroupedOrderCard extends StatefulWidget {
     required this.totalPortions,
     required this.orders,
     required this.items,
+    this.fontSize = 14.0, // Add default value
   }) : super(key: key);
 
   @override
@@ -499,6 +641,24 @@ class GroupedOrderCard extends StatefulWidget {
 
 class _GroupedOrderCardState extends State<GroupedOrderCard> {
   bool isExpanded = false;
+
+  Color _getStatusColor(String status, DateTime orderTime) {
+    switch (status.toLowerCase()) {
+      case 'pending':
+        return Colors.yellow.shade100;
+      case 'preparing':
+        if (orderTime.isBefore(DateTime.now().subtract(const Duration(minutes: 30)))) {
+          return Colors.red.shade100;
+        }
+        return Colors.orange.shade100;
+      case 'ready':
+        return Colors.blue.shade100;
+      case 'delivered':
+        return Colors.green.shade100;
+      default:
+        return Colors.grey.shade100;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -558,11 +718,19 @@ class _GroupedOrderCardState extends State<GroupedOrderCard> {
             : widget.totalPortions.toStringAsFixed(1);
 
     return Card(
-      color: cardColor,
+      color: _getStatusColor(worstStatus, 
+          DateTime.now().subtract(maxDelay)),
+      shape: widget.orders.any((order) => order['orderType'] == 'takeaway')
+          ? RoundedRectangleBorder(
+              side: BorderSide(color: Colors.black, width: 2),
+              borderRadius: BorderRadius.circular(4),
+            )
+          : null,
       child: Column(
         children: [
           ListTile(
-            title: Text('$totalPortionText x ${widget.itemName}'),
+            title: Text('$totalPortionText x ${widget.itemName}', 
+              style: TextStyle(fontSize: widget.fontSize)),
             trailing: IconButton(
               icon:
                   Icon(isExpanded ? Icons.expand_less : Icons.expand_more),
@@ -583,6 +751,7 @@ class _GroupedOrderCardState extends State<GroupedOrderCard> {
                     items: widget.items,
                     orderNumber: 0,
                     isGrouped: true,
+                    fontSize: widget.fontSize, // Pass the font size
                   );
                 }).toList(),
               ),
@@ -598,6 +767,7 @@ class OrderCard extends StatelessWidget {
   final int orderNumber;
   final List<QueryDocumentSnapshot>? items;
   final bool isGrouped;
+  final double fontSize;
 
   const OrderCard({
     Key? key,
@@ -605,7 +775,47 @@ class OrderCard extends StatelessWidget {
     required this.items,
     required this.orderNumber,
     this.isGrouped = false,
+    this.fontSize = 14.0, // Add default value
   }) : super(key: key);
+
+  Future<void> _updateOrderStatus(String orderId, String newStatus) async {
+    await FirebaseFirestore.instance
+        .collection('orders')
+        .doc(orderId)
+        .update({'orderStatus': newStatus});
+  }
+
+  Future<void> _moveOrderForward(String orderId, String currentStatus) async {
+    final currentIndex = states.indexOf(currentStatus);
+    if (currentIndex < states.length - 1) {
+      await _updateOrderStatus(orderId, states[currentIndex + 1]);
+    }
+  }
+
+  Future<void> _moveOrderBackward(String orderId, String currentStatus) async {
+    final currentIndex = states.indexOf(currentStatus);
+    if (currentIndex > 0) {
+      await _updateOrderStatus(orderId, states[currentIndex - 1]);
+    }
+  }
+
+  Color _getStatusColor(String status, DateTime orderTime) {
+    switch (status.toLowerCase()) {
+      case 'pending':
+        return Colors.yellow.shade100;
+      case 'preparing':
+        if (orderTime.isBefore(DateTime.now().subtract(const Duration(minutes: 30)))) {
+          return Colors.red.shade100;
+        }
+        return Colors.orange.shade100;
+      case 'ready':
+        return Colors.blue.shade100;
+      case 'delivered':
+        return Colors.green.shade100;
+      default:
+        return Colors.grey.shade100;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -641,8 +851,15 @@ class OrderCard extends StatelessWidget {
     String orderTimeString = 'Unknown Time';
     if (order['orderType'] == 'table') {
       if (orderTime != null) {
-        orderTimeString =
-            'Order Time: ${orderTime.toDate().toString().split('.')[0]}';
+        DateTime orderDateTime = orderTime.toDate();
+        DateTime now = DateTime.now();
+        if (orderDateTime.year == now.year &&
+            orderDateTime.month == now.month &&
+            orderDateTime.day == now.day) {
+          orderTimeString = '${orderDateTime.toString().split(' ')[1].split('.')[0]}';
+        } else {
+          orderTimeString = '${orderDateTime.toString().split('.')[0]}';
+        }
       }
     } else {
       if (deliveryTime != null) {
@@ -672,8 +889,16 @@ class OrderCard extends StatelessWidget {
     }
 
     Widget cardContent = Card(
-      color: cardColor,
+      color: _getStatusColor(order['orderStatus'], 
+          orderTime?.toDate() ?? DateTime.now()),
+      shape: order['orderType'] == 'takeaway' 
+          ? RoundedRectangleBorder(
+              side: BorderSide(color: Colors.black, width: 2),
+              borderRadius: BorderRadius.circular(4),
+            )
+          : null,
       child: Padding(
+        // ...rest of existing card content...
         padding: const EdgeInsets.all(8.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -682,7 +907,8 @@ class OrderCard extends StatelessWidget {
               children: [
                 Expanded(
                   flex: 2,
-                  child: Text('${orderPortionText} x $itemName'),
+                  child: Text('${orderPortionText} x $itemName', 
+                    style: TextStyle(fontSize: fontSize)),
                 ),
                 Expanded(
                   flex: 1,
@@ -707,19 +933,39 @@ class OrderCard extends StatelessWidget {
                       var userData = snapshot.data!.docs.first.data()
                           as Map<String, dynamic>;
                       String username = userData['name'];
-                      return Text('$orderTypeString - $username');
+                      return Text('$orderTypeString - $username', 
+                        style: TextStyle(fontSize: fontSize));
                     },
                   ),
                 ),
                 Expanded(
                   flex: 2,
-                  child: Text(orderTimeString),
+                  child: Text(orderTimeString, 
+                    style: TextStyle(fontSize: fontSize)),
                 ),
                 if (!isGrouped)
                   Expanded(
                     flex: 1,
-                    child: Text('Order $orderNumber'),
+                    child: Text('Order ${order['orderId']}', 
+                      style: TextStyle(fontSize: fontSize)),
                   ),
+                IconButton(
+                  icon: const Icon(Icons.arrow_back),
+                  onPressed: order['orderStatus'] != states.first
+                      ? () => _moveOrderBackward(order.id, order['orderStatus'])
+                      : null,
+                  iconSize: 24,
+                  tooltip: 'Move Back',
+                ),
+                IconButton(
+                  icon: const Icon(Icons.arrow_forward), 
+                  onPressed: order['orderStatus'] != states.last
+                      ? () => _moveOrderForward(order.id, order['orderStatus'])
+                      : null,
+                  iconSize: 24,
+                  tooltip: 'Move Forward',
+                ),
+                // Existing delete button
                 IconButton(
                   icon: Icon(Icons.delete),
                   onPressed: () {
@@ -756,8 +1002,10 @@ class OrderCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Details: ${order['orderDetails']}'),
-                Text('Delay: ${delay.inMinutes} minutes'),
+                Text('${order['orderStatus'].toString().toUpperCase()} - ${order['orderDetails']}', 
+                  style: TextStyle(fontSize: fontSize)),
+                Text('Delay: ${delay.inMinutes} minutes', 
+                  style: TextStyle(fontSize: fontSize)),
               ],
             ),
           ],
